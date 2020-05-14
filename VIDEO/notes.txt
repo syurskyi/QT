@@ -1,0 +1,25 @@
+Need to create ui interface
+1. GUI Development with PyQt5 and SQL
+2. Build Library Management System | Python & PyQt5
+3. Udemy - Build Real Software with Python, PyQt5 and QT Designer
+
+Need to download code
+Python OpenCV Based GUI Application Development using PyQt5
+Learn Python GUI programming using Qt framework
+Python GUI Programming Using PyQt5
+Python GUI Programming Recipes using PyQt5
+Udemy - PyQt Desktop Apps with Python
+
+Need to write code
+Learn PySide
+Martin Fitzpatrick - PyQt Build Your Own Web Browser - Mozzarella Ashbadger
+Pluralsight - Python Desktop Application Development Part 2 - Design
+Udemy - Build Real Software with Python, PyQt5 and QT Designer
+GUI Development with PyQt5 and SQL
+
+Need to make this to work
+Python Tool Development with PySide & PyQt
+Build Library Management System | Python & PyQt5
+Build Full Download Manager | Python & PyQt5
+Python GUI Programming Using PyQt5
+Udemy - PyQt Desktop Apps with Python
