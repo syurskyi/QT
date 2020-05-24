@@ -26,7 +26,7 @@ class Life2Coding(QDialog):
     def displayImage(self):
         qformat=QImage.Format_Indexed8
 
-        if len(self.image.shape)==3: #rows[0],cols[1],channels[2]
+        if len(self.image.shape) == 3: #rows[0],cols[1],channels[2]
             if(self.image.shape[2])==4:
                 qformat=QImage.Format_RGBA8888
             else:
@@ -39,8 +39,8 @@ class Life2Coding(QDialog):
 
 
 if __name__=='__main__':
-    app=QApplication(sys.argv)
-    window=Life2Coding()
+    app = QApplication(sys.argv)
+    window = Life2Coding()
     window.setWindowTitle('Hanif PyQt5 Tutorials')
     window.show()
     sys.exit(app.exec_())

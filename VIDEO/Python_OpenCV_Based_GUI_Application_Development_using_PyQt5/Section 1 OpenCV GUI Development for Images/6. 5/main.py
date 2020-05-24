@@ -4,7 +4,7 @@ import cv2
 from PyQt5 import QtCore
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QImage, QPixmap
-from PyQt5.QtWidgets import QDialog, QApplication
+from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog
 from PyQt5.uic import loadUi
 
 
@@ -14,13 +14,27 @@ class Life2Coding(QDialog):
         loadUi('life2coding.ui',self)
         self.image=None
         self.loadButton.clicked.connect(self.loadClicked)
+        self.saveButton.clicked.connect(self.saveClicked)
 
     @pyqtSlot()
     def loadClicked(self):
-        self.loadImage('hanif.jpg')
+        fname,filter =QFileDialog.getOpenFileName(self,'Open File','C:\\',"Image Files (*.jpg)")
+        if fname:
+            self.loadImage(fname)
+        else:
+            print('Invalid Image')
+
+    @pyqtSlot()
+    def saveClicked(self):
+        fname, filter = QFileDialog.getSaveFileName(self, 'Save File', 'C:\\', "Image Files (*.jpg)")
+        if fname:
+            cv2.imwrite(fname,self.image)
+        else:
+            print('Error')
+
 
     def loadImage(self,fname):
-        self.image=cv2.imread(fname,cv2.IMREAD_GRAYSCALE)
+        self.image=cv2.imread(fname,cv2.IMREAD_COLOR)
         self.displayImage()
 
     def displayImage(self):
@@ -40,7 +54,7 @@ class Life2Coding(QDialog):
 
 if __name__=='__main__':
     app=QApplication(sys.argv)
-    window = Life2Coding()
+    window=Life2Coding()
     window.setWindowTitle('Hanif PyQt5 Tutorials')
     window.show()
     sys.exit(app.exec_())
