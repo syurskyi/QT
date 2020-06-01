@@ -1,0 +1,13 @@
+Danilo:1700
+Vlada:300
+c:0
+dd:0
+asd:14200
+ffff:1300
+ss:2950
+First Player:8150
+Second Player:1000
+djura:2050
+pera:0
+Steve:100
+Urkel:22850
