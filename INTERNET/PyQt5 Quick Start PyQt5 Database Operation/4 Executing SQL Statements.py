@@ -4,7 +4,7 @@ from PyQt5.QtCore import *
 
 def createDB():
     db = QSqlDatabase.addDatabase("QSQLITE")
-    db.setDatabaseName("/home/user/test.db")
+    db.setDatabaseName("test.db")
     if db.open():
         query = QSqlQuery()
         query.exec_("create table person(id int primary key, name varchar(20), address varchar(30))")

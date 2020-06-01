@@ -7,7 +7,7 @@ class MainWindow(QWidget):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.db = QSqlDatabase.addDatabase("QSQLITE")
-        self.db.setDatabaseName("/home/user/test.db")
+        self.db.setDatabaseName("test.db")
         self.db.open()
         self.model = QSqlTableModel()
         self.initializedModel()
