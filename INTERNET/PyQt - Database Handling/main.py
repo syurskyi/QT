@@ -1,5 +1,5 @@
 import sys
-from PyQt5 import QtCore, QtGui, QtSql
+from PyQt5 import QtCore, QtGui, QtSql, QtWidgets
 import sportsconnection
 
 
@@ -13,7 +13,7 @@ def initializeModel(model):
 
 
 def createView(title, model):
-    view = QtGui.QTableView()
+    view = QtWidgets.QTableView()
     view.setModel(model)
     view.setWindowTitle(title)
     return view
@@ -32,7 +32,7 @@ def findrow(i):
 
 
 if __name__ == '__main__':
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
     db.setDatabaseName('sports.db')
     model = QtSql.QSqlTableModel()
@@ -42,15 +42,15 @@ if __name__ == '__main__':
     view1 = createView("Table Model (View 1)", model)
     view1.clicked.connect(findrow)
 
-    dlg = QtGui.QDialog()
-    layout = QtGui.QVBoxLayout()
+    dlg = QtWidgets.QDialog()
+    layout = QtWidgets.QVBoxLayout()
     layout.addWidget(view1)
 
-    button = QtGui.QPushButton("Add a row")
+    button = QtWidgets.QPushButton("Add a row")
     button.clicked.connect(addrow)
     layout.addWidget(button)
 
-    btn1 = QtGui.QPushButton("del a row")
+    btn1 = QtWidgets.QPushButton("del a row")
     btn1.clicked.connect(lambda: model.removeRow(view1.currentIndex().row()))
     layout.addWidget(btn1)
 

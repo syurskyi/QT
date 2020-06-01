@@ -1,9 +1,9 @@
 import sys
 import matplotlib as mpl
 from matplotlib.backends.backend_agg import FigureCanvasAgg
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5 import QtGui, QtCore
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 
 
 
