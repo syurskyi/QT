@@ -1,0 +1,34 @@
+
+Level Jumping game 
+
+Note: This is just an import from another version control system 
+(commit history was purposely not imported)
+
+				__Files__
+
+All necessary files are found in game_files folder
+
+test_files and test_levels are just for testing purposes
+
+main game files are directly in game_files (not in the lower folders)
+
+use game_config/config.txt to change configuration parameter values
+
+
+			__Requirements__
+			
+This project requires Python standard libraries and PyQt5 library to work
+
+
+			__Running the program__
+			
+The game is started by running start_the_game.py 
+See config.txt to check how configuration parameters are set
+
+
+			__Other notes__
+
+Buttons use transparent background,which may not work in all running environments
+			
+
+		

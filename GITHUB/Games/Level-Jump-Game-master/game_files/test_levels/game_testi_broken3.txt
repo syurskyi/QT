@@ -1,0 +1,13 @@
+%Kommenttirivi merkit‰‰n %-merkill‰ heti rivin alussa, ne rivit ohitetaan parsimisessa
+%Tiedoston alussa ovat tyhj‰t linet (ei kommentoidut) kertovat ylimpien objektien et‰isyyden piirtoalueen yl‰reunasta (jos liian suuri niin ei en‰‰ kasva)
+% merkki - = tyhj‰ ruutu peliss‰, E = enemy, P = player, W = Finish (Win), O = obstacle (este), F = fall (pudotus)
+% whitespace ohitetaan, ja objektien symbolit non case sensitive. Riveill‰ tulee olla sama m‰‰r‰ merkkej‰ (pois lukien whitespace)
+
+
+
+
+
+- - - - - - - - - - - - - - - - - - - - O O - E - O O - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - O O - - O P O - - O O O - - - - - - - - - - - - - - - - - - - - - -
+- - - - - O O - - - - - - - - - O O - - - - - - - - - - - - O O - - - - - - - - - - - - O O - - - - - -
+P - - O O - - O O - E - - O O O - - - - - - - - - - - - - - - - F - - O O E - - - - O O - - O O - F - W

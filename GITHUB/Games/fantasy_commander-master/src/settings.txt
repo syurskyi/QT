@@ -1,0 +1,19 @@
+Player1:  Human
+Tank Pena 0 0
+Mage Jaska 0 1
+Ninja Maikki 0 2
+Sniper Ninni 0 3
+Tank Make 0 4
+Mage Jonesus 0 5
+Ninja Timppa 0 6
+Sniper Antsa  0 7
+
+Player2:   AI
+Tank James  13 0
+Mage Charles  13 1
+Ninja SirLancelot  13 2
+Sniper SirShootsalot  13 3
+Tank Elizabeth 13 4
+Mage M'Lady  13 5
+Ninja Jeeves  13 6
+Sniper SirDiesalot  13 7

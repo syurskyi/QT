@@ -1,0 +1,34 @@
+<?xml version = '1.0' encoding='UTF-8' ?>
+
+<!--
+This file is used to define colors and their min/max thresholds for the detection process.
+
+Colors are defined in OpenCV's HSV system (H=[0, 179], S=[0, 254], V=[0, 254]).
+
+If a threshold for a specific component is not defined, defaut value is given :
+	min: H=0, S=0, V=0
+	max: H=179, S=254, V=254
+-->
+
+<colors>
+	<color name='green'>
+		<min>
+			<h value='50' />
+			<s value='100' />
+			<v value='70' />
+		</min>
+		<max>
+			<h value='74' />
+		</max>
+	</color>
+	<color name='red'>
+		<min>
+			<h value='158' />
+			<s value='128' />
+			<v value='102' />
+		</min>
+		<max>
+			<h value='178' />
+		</max>
+	</color>
+</colors>

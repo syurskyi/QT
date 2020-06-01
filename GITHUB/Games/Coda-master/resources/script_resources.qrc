@@ -1,0 +1,14 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/scr">
+
+<!-- SCRIPT -->
+
+        <file alias="scr_a0000.xml">script/scr_a0000.xml</file>
+        <file alias="scr_a0001a.xml">script/scr_a0001a.xml</file>
+        <file alias="scr_a0001b.xml">script/scr_a0001b.xml</file>
+        <file alias="scr_a0002a.xml">script/scr_a0002a.xml</file>
+        <file alias="scr_a0002b.xml">script/scr_a0002b.xml</file>
+        <file alias="scr_a0003.xml">script/scr_a0003.xml</file>
+
+    </qresource>
+</RCC>

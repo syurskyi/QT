@@ -1,0 +1,23 @@
+<RCC>
+  <qresource prefix="Dice_20">
+    <file>d2_0.png</file>
+  </qresource>
+  <qresource prefix="Dice_21">
+    <file>d2_1.png</file>
+  </qresource>
+  <qresource prefix="Dice_22">
+    <file>d2_2.png</file>
+  </qresource>
+  <qresource prefix="Dice_23">
+    <file>d2_3.png</file>
+  </qresource>
+  <qresource prefix="Dice_24">
+    <file>d2_4.png</file>
+  </qresource>
+  <qresource prefix="Dice_25">
+    <file>d2_5.png</file>
+  </qresource>
+  <qresource prefix="Dice_26">
+    <file>d2_6.png</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+    <content id="0">
+        <tb>
+            <sh>True</sh>
+            <td>1000</td>
+            <txt>通話履歴を見てみると――</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="1">
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <txt>「カミサマ」</txt>
+        </tb>
+    </content>
+    <content id="2">
+        <tb>
+            <txt>「カミサマ」</txt>
+        </tb>
+    </content>
+    <content id="3">
+        <tb>
+            <txt>「カミサマ」</txt>
+        </tb>
+    </content>
+    <content id="4">
+        <tb>
+            <txt>「カミサマ」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="5">
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <txt>――なんだ、これは。</txt>
+        </tb>
+    </content>
+    <content id="6">
+        <tb>
+            <txt>続いて電話帳をチェックする。</txt>
+        </tb>
+    </content>
+    <content id="7">
+        <tb>
+            <txt>登録されているアドレスはひとつ。</txt>
+        </tb>
+    </content>
+    <content id="8">
+        <tb>
+            <txt>「カミサマ」だ。</txt>
+        </tb>
+    </content>
+    <content id="9">
+        <tb>
+            <txt>――神様専用か？</txt>
+        </tb>
+    </content>
+    <content id="10">
+        <tb>
+            <txt>まさか、ホントに神様の持ち物ってことはないよな？</txt>
+        </tb>
+    </content>
+    <content id="11">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「――ん？」</txt>
+            <hi>True</hi>
+        </tb>
+        <sd>
+            <pos>2</pos>
+            <md>dell</md>
+            <dfd>True</dfd>
+        </sd>
+    </content>
+    <content id="12">
+        <eff>
+            <id>black_fade</id>
+            <du>1500</du>
+        </eff>
+        <mk>
+            <id>monitor</id>
+            <md>new</md>
+        </mk>
+        <bg>
+            <id>ev_0113_aoi_riding_a</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <vc>vc_a01_1300010a02</vc>
+            <char>＊＊＊＊</char>
+            <txt>『るる』</txt>
+        </tb>
+    </content>
+    <content id="13">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「…………」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="14">
+        <bg>
+            <id>ev_0113_aoi_riding_a_l</id>
+            <x>-285</x>
+            <y>-120</y>
+            <xf>-332</xf>
+            <yf>-156</yf>
+            <du>7000</du>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>2000</td>
+            <txt>彼女の瞳が、俺に向けられた。</txt>
+        </tb>
+    </content>
+    <content id="15">
+        <tb>
+            <vc>vc_a01_1300020a02</vc>
+            <char>＊＊＊＊</char>
+            <txt>『デンチ、きれたの』</txt>
+        </tb>
+    </content>
+    <content id="16">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「電池？」</txt>
+        </tb>
+    </content>
+    <content id="17">
+        <tb>
+            <vc>vc_a01_1300030a02</vc>
+            <char>＊＊＊＊</char>
+            <txt>『ジュウデン、ひつようなの』</txt>
+        </tb>
+    </content>
+    <content id="18">
+        <bg>
+            <id>ev_0113_aoi_riding_a_xl</id>
+            <x>-691</x>
+            <y>-322</y>
+            <xf>-740</xf>
+            <yf>-376</yf>
+            <du>7000</du>
+        </bg>
+        <tb>
+            <vc>vc_a01_1300040a02</vc>
+            <txt>『ビリビリ、するの？』</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="19">
+        <sd>
+            <pos>2</pos>
+            <id>sd_environ_roof_after_school_L</id>
+            <md>new</md>
+            <lp>True</lp>
+            <fd>True</fd>
+        </sd>
+        <eff>
+            <id>black_fade</id>
+            <du>1500</du>
+        </eff>
+        <mk>
+            <md>del</md>
+        </mk>
+        <bg>
+            <id>bg_010200_2_school_roof</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>500</td>
+            <txt>間違ったボタンを押してしまったらしい。</txt>
+        </tb>
+    </content>
+    <content id="20">
+        <tb>
+            <txt>起動したのは、いわゆる「萌え」なゲームだった。</txt>
+        </tb>
+    </content>
+    <content id="21">
+        <tb>
+            <txt>友達が携帯ゲーム機でやっているのは見たことがある。</txt>
+        </tb>
+    </content>
+    <content id="22">
+        <tb>
+            <txt>スマートフォンでもおかしくはないだろう。</txt>
+        </tb>
+    </content>
+    <content id="23">
+        <tb>
+            <txt>俺はプレイしたことがないけれど。</txt>
+        </tb>
+    </content>
+    <content id="24">
+        <tb>
+            <txt>ないはず……なのに……</txt>
+        </tb>
+    </content>
+    <content id="25">
+        <tb>
+            <txt>でも、この制服は見たことがあるような……</txt>
+        </tb>
+    </content>
+    <content id="26">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「知ってる……？」</txt>
+        </tb>
+        <sd>
+            <pos>2</pos>
+            <md>dell</md>
+            <dfd>True</dfd>
+        </sd>
+    </content>
+    <content id="27">
+        <tb>
+            <vc>vc_a01_1300050a02</vc>
+            <char>＊＊＊＊</char>
+            <txt>「とうおるるるるるるるるるるるるるる……」</txt>
+        </tb>
+    </content>
+    <content id="28">
+        <tb>
+            <txt>奇妙な声が、届いた。</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="29">
+        <bgm>
+            <pos>0</pos>
+            <id>bgm_ttb01</id>
+            <md>new</md>
+        </bgm>
+        <bg>
+            <id>ev_0113_aoi_sending_e_l</id>
+            <x>-500</x>
+            <y>-576</y>
+            <xf>-500</xf>
+            <yf>-270</yf>
+            <du>3000</du>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>1500</td>
+            <vc>vc_a01_1300060a02</vc>
+            <char>＊＊＊＊</char>
+            <txt>「とうおるるるるるるるるるるるるるる……」</txt>
+        </tb>
+    </content>
+    <content id="30">
+        <tb>
+            <txt>少女が手を挙げていた。</txt>
+        </tb>
+    </content>
+    <content id="31">
+        <tb>
+            <txt>屋上のさらに上、階段の屋根で。</txt>
+        </tb>
+    </content>
+    <content id="32">
+        <tb>
+            <txt>表情には、どんな色も浮かべることなく。</txt>
+        </tb>
+    </content>
+    <content id="33">
+        <bg>
+            <id>ev_0113_aoi_sending_e</id>
+        </bg>
+        <tb>
+            <txt>瞳は焦点を結ばず、ただ空を――</txt>
+        </tb>
+    </content>
+    <content id="34">
+        <tb>
+            <txt>いや、空のさらに向こうを見ているようで。</txt>
+        </tb>
+    </content>
+    <content id="35">
+        <tb>
+            <vc>vc_a01_1300070a02</vc>
+            <char>＊＊＊＊</char>
+            <txt>「とうおる……るるる……るる……る……」</txt>
+        </tb>
+    </content>
+    <content id="36">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「え……？」</txt>
+        </tb>
+    </content>
+    <content id="37">
+        <bg>
+            <id>ev_0113_aoi_sending_e_l</id>
+            <x>-430</x>
+            <y>-360</y>
+            <xf>-430</xf>
+            <yf>-300</yf>
+            <du>8000</du>
+        </bg>
+        <tb>
+            <txt>身体が、左右に揺れ始める。</txt>
+        </tb>
+    </content>
+    <content id="38">
+        <tb>
+            <txt>唇から漏れる謎の音も、徐々に小さくなり――</txt>
+        </tb>
+    </content>
+    <content id="39">
+        <tb>
+            <vc>vc_a01_1300080a02</vc>
+            <char>＊＊＊＊</char>
+            <txt>「と……る……る……ぅ…………」</txt>
+        </tb>
+    </content>
+    <content id="40">
+        <tb>
+            <vc>vc_a01_1300090a02</vc>
+            <char>＊＊＊＊</char>
+            <txt>「るる…………」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="41">
+        <bgm>
+            <pos>0</pos>
+            <md>vol</md>
+            <vol>0</vol>
+        </bgm>
+        <bg>
+            <id>black</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>1500</td>
+            <char>須々木心一</char>
+            <txt>「やば――！」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="42">
+        <sd>
+            <pos>0</pos>
+            <id>sd_body_shock</id>
+            <md>new</md>
+        </sd>
+        <tb>
+            <sh>True</sh>
+            <td>1800</td>
+            <char>須々木心一</char>
+            <txt>「ん……つつつ……」</txt>
+        </tb>
+    </content>
+    <content id="43">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「だ……大丈夫か？」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="44">
+        <bgm>
+            <pos>0</pos>
+            <md>vol</md>
+            <vol>80</vol>
+        </bgm>
+        <bg>
+            <id>ev_0113_aoi_riding_a</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>300</td>
+            <vc>vc_a01_1300100a02</vc>
+            <char>＊＊＊＊</char>
+            <txt>「るる」</txt>
+        </tb>
+    </content>
+    <content id="45">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「…………」</txt>
+        </tb>
+    </content>
+    <content id="46">
+        <bg>
+            <id>ev_0113_aoi_riding_a_l</id>
+            <x>-285</x>
+            <y>-120</y>
+            <xf>-332</xf>
+            <yf>-156</yf>
+            <du>7000</du>
+        </bg>
+        <tb>
+            <txt>彼女の瞳が、俺にピントを合わせた。</txt>
+        </tb>
+    </content>
+    <content id="47">
+        <tb>
+            <vc>vc_a01_1300110a02</vc>
+            <char>＊＊＊＊</char>
+            <txt>「デンチ、きれたの」</txt>
+        </tb>
+    </content>
+    <content id="48">
+        <tb>
+            <char>須々木心一</char>
+            <txt>「電池？」</txt>
+        </tb>
+    </content>
+    <content id="49">
+        <tb>
+            <vc>vc_a01_1300120a02</vc>
+            <char>＊＊＊＊</char>
+            <txt>「ジュウデン、ひつようなの」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="50">
+        <bg>
+            <id>ev_0113_aoi_riding_a_xl</id>
+            <x>-691</x>
+            <y>-322</y>
+            <xf>-740</xf>
+            <yf>-376</yf>
+            <du>7000</du>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>800</td>
+            <txt>顔が、近い。</txt>
+        </tb>
+    </content>
+    <content id="51">
+        <tb>
+            <txt>息が、かかる。</txt>
+        </tb>
+    </content>
+    <content id="52">
+        <tb>
+            <txt>唇が、すぐそこに。</txt>
+        </tb>
+    </content>
+    <content id="53">
+        <tb>
+            <txt>学校中に広まる伝説。</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="54">
+        <bg>
+            <id>black</id>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>300</td>
+            <txt>――屋上でキスすると、ふたりは永遠に結ばれる。</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="55">
+        <bg>
+            <id>ev_0113_aoi_riding_a_xl</id>
+            <x>-691</x>
+            <y>-322</y>
+            <xf>-740</xf>
+            <yf>-376</yf>
+            <du>7000</du>
+        </bg>
+        <tb>
+            <sh>True</sh>
+            <td>300</td>
+            <vc>vc_a01_1300130a02</vc>
+            <char>＊＊＊＊</char>
+            <txt>「ビリビリ、するの？」</txt>
+            <hi>True</hi>
+        </tb>
+    </content>
+    <content id="56">
+        <sl>
+            <txt>「ビリビリする」</txt>
+            <sc>scr_a0002a</sc>
+        </sl>
+        <sl>
+            <txt>「ビリビリしない」</txt>
+            <sc>scr_a0002b</sc>
+        </sl>
+    </content>
+</script>

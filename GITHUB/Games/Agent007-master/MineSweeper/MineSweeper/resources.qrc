@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="img_resources">
+    <file>Images/2.png</file>
+    <file>Images/3.bmp</file>
+    <file>Images/4.jpg</file>
+    <file>Images/5.jpg</file>
+    <file>Images/6.jpg</file>
+    <file>Images/Cross.png</file>
+    <file>Images/Mine.png</file>
+    <file>Images/Player.png</file>
+    <file>Images/Skull.jpg</file>
+    <file>Images/1.jpg</file>
+  </qresource>
+</RCC>

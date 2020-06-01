@@ -1,0 +1,148 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/sys">
+
+<!-- SYSTEM -->
+
+    <!-- DOCUMENT -->
+
+        <file alias="config.xml">system/document/config.xml</file>
+        <file alias="extra_data.xml">system/document/extra_data.xml</file>
+        <file alias="save_data.xml">system/document/save_data.xml</file>
+
+    <!-- GAME ENGINE -->
+
+        <file alias="select_button_defaults.png">system/game_engine/select_button_defaults.png</file>
+        <file alias="select_button_hover.png">system/game_engine/select_button_hover.png</file>
+        <file alias="select_button_press.png">system/game_engine/select_button_press.png</file>
+
+        <file alias="text_background.png">system/game_engine/text_background.png</file>
+
+        <file alias="auto_button_state_0.png">system/game_engine/auto_button_state_0.png</file>
+        <file alias="auto_button_state_1.png">system/game_engine/auto_button_state_1.png</file>
+        <file alias="auto_button_hover.png">system/game_engine/auto_button_hover.png</file>
+        <file alias="auto_button_press.png">system/game_engine/auto_button_press.png</file>
+        <file alias="auto_tool_tip.png">system/game_engine/auto_tool_tip.png</file>
+        <file alias="auto_active_tool_tip.png">system/game_engine/auto_active_tool_tip.png</file>
+
+        <file alias="skip_button_defaults.png">system/game_engine/skip_button_defaults.png</file>
+        <file alias="skip_button_hover.png">system/game_engine/skip_button_hover.png</file>
+        <file alias="skip_button_press.png">system/game_engine/skip_button_press.png</file>
+        <file alias="skip_tool_tip.png">system/game_engine/skip_tool_tip.png</file>
+        <file alias="skip_active_tool_tip.png">system/game_engine/skip_active_tool_tip.png</file>
+
+        <file alias="log_back_button_defaults.png">system/game_engine/log_back_button_defaults.png</file>
+        <file alias="log_back_button_hover.png">system/game_engine/log_back_button_hover.png</file>
+        <file alias="log_back_button_press.png">system/game_engine/log_back_button_press.png</file>
+
+        <file alias="log_button_defaults.png">system/game_engine/log_button_defaults.png</file>
+        <file alias="log_button_hover.png">system/game_engine/log_button_hover.png</file>
+        <file alias="log_button_press.png">system/game_engine/log_button_press.png</file>
+        <file alias="log_tool_tip.png">system/game_engine/log_tool_tip.png</file>
+
+        <file alias="save_button_defaults.png">system/game_engine/save_button_defaults.png</file>
+        <file alias="save_button_hover.png">system/game_engine/save_button_hover.png</file>
+        <file alias="save_button_press.png">system/game_engine/save_button_press.png</file>
+        <file alias="save_tool_tip.png">system/game_engine/save_tool_tip.png</file>
+
+        <file alias="load_button_defaults.png">system/game_engine/load_button_defaults.png</file>
+        <file alias="load_button_hover.png">system/game_engine/load_button_hover.png</file>
+        <file alias="load_button_press.png">system/game_engine/load_button_press.png</file>
+        <file alias="load_tool_tip.png">system/game_engine/load_tool_tip.png</file>
+
+        <file alias="menu_button_defaults.png">system/game_engine/menu_button_defaults.png</file>
+        <file alias="menu_button_hover.png">system/game_engine/menu_button_hover.png</file>
+        <file alias="menu_button_press.png">system/game_engine/menu_button_press.png</file>
+        <file alias="menu_tool_tip.png">system/game_engine/menu_tool_tip.png</file>
+
+        <file alias="hide_button_defaults.png">system/game_engine/hide_button_defaults.png</file>
+        <file alias="hide_button_hover.png">system/game_engine/hide_button_hover.png</file>
+        <file alias="hide_button_press.png">system/game_engine/hide_button_press.png</file>
+
+        <file alias="menu_back_button_defaults.png">system/game_engine/menu_back_button_defaults.png</file>
+        <file alias="menu_back_button_hover.png">system/game_engine/menu_back_button_hover.png</file>
+        <file alias="menu_back_button_press.png">system/game_engine/menu_back_button_press.png</file>
+
+        <file alias="menu_title_button_defaults.png">system/game_engine/menu_title_button_defaults.png</file>
+        <file alias="menu_title_button_hover.png">system/game_engine/menu_title_button_hover.png</file>
+        <file alias="menu_title_button_press.png">system/game_engine/menu_title_button_press.png</file>
+
+        <file alias="menu_config_button_defaults.png">system/game_engine/menu_config_button_defaults.png</file>
+        <file alias="menu_config_button_hover.png">system/game_engine/menu_config_button_hover.png</file>
+        <file alias="menu_config_button_press.png">system/game_engine/menu_config_button_press.png</file>
+
+        <file alias="menu_quit_button_defaults.png">system/game_engine/menu_quit_button_defaults.png</file>
+        <file alias="menu_quit_button_hover.png">system/game_engine/menu_quit_button_hover.png</file>
+        <file alias="menu_quit_button_press.png">system/game_engine/menu_quit_button_press.png</file>
+
+        <file alias="menu_background.png">system/game_engine/menu_background.png</file>
+
+    <!-- INTRO -->
+
+        <file alias="intro_background.png">system/intro/intro_background.png</file>
+
+    <!-- SAVE -->
+
+        <file alias="save_base.png">system/save/save_base.png</file>
+
+        <file alias="save_label_button_defaults.png">system/save/save_label_button_defaults.png</file>
+        <file alias="save_label_button_hover.png">system/save/save_label_button_hover.png</file>
+        <file alias="save_label_button_press.png">system/save/save_label_button_press.png</file>
+
+        <file alias="save_1_button_defaults.png">system/save/save_1_button_defaults.png</file>
+        <file alias="save_1_button_hover.png">system/save/save_1_button_hover.png</file>
+        <file alias="save_1_button_press.png">system/save/save_1_button_press.png</file>
+
+        <file alias="save_2_button_defaults.png">system/save/save_2_button_defaults.png</file>
+        <file alias="save_2_button_hover.png">system/save/save_2_button_hover.png</file>
+        <file alias="save_2_button_press.png">system/save/save_2_button_press.png</file>
+
+        <file alias="save_3_button_defaults.png">system/save/save_3_button_defaults.png</file>
+        <file alias="save_3_button_hover.png">system/save/save_3_button_hover.png</file>
+        <file alias="save_3_button_press.png">system/save/save_3_button_press.png</file>
+
+        <file alias="save_4_button_defaults.png">system/save/save_4_button_defaults.png</file>
+        <file alias="save_4_button_hover.png">system/save/save_4_button_hover.png</file>
+        <file alias="save_4_button_press.png">system/save/save_4_button_press.png</file>
+
+        <file alias="save_5_button_defaults.png">system/save/save_5_button_defaults.png</file>
+        <file alias="save_5_button_hover.png">system/save/save_5_button_hover.png</file>
+        <file alias="save_5_button_press.png">system/save/save_5_button_press.png</file>
+
+        <file alias="save_6_button_defaults.png">system/save/save_6_button_defaults.png</file>
+        <file alias="save_6_button_hover.png">system/save/save_6_button_hover.png</file>
+        <file alias="save_6_button_press.png">system/save/save_6_button_press.png</file>
+
+        <file alias="save_delete_button_defaults.png">system/save/save_delete_button_defaults.png</file>
+        <file alias="save_delete_button_hover.png">system/save/save_delete_button_hover.png</file>
+        <file alias="save_delete_button_press.png">system/save/save_delete_button_press.png</file>
+
+        <file alias="save_back_button_defaults.png">system/save/save_back_button_defaults.png</file>
+        <file alias="save_back_button_hover.png">system/save/save_back_button_hover.png</file>
+        <file alias="save_back_button_press.png">system/save/save_back_button_press.png</file>
+
+    <!-- MAIN WINDOW -->
+
+        <file alias="main_background.png">system/main_window/main_background.png</file>
+
+        <file alias="main_start_button_defaults.png">system/main_window/main_start_button_defaults.png</file>
+        <file alias="main_start_button_hover.png">system/main_window/main_start_button_hover.png</file>
+        <file alias="main_start_button_press.png">system/main_window/main_start_button_press.png</file>
+
+        <file alias="main_load_button_defaults.png">system/main_window/main_load_button_defaults.png</file>
+        <file alias="main_load_button_hover.png">system/main_window/main_load_button_hover.png</file>
+        <file alias="main_load_button_press.png">system/main_window/main_load_button_press.png</file>
+
+        <file alias="main_extra_button_defaults.png">system/main_window/main_extra_button_defaults.png</file>
+        <file alias="main_extra_button_hover.png">system/main_window/main_extra_button_hover.png</file>
+        <file alias="main_extra_button_press.png">system/main_window/main_extra_button_press.png</file>
+
+        <file alias="main_config_button_defaults.png">system/main_window/main_config_button_defaults.png</file>
+        <file alias="main_config_button_hover.png">system/main_window/main_config_button_hover.png</file>
+        <file alias="main_config_button_press.png">system/main_window/main_config_button_press.png</file>
+
+        <file alias="main_quit_button_defaults.png">system/main_window/main_quit_button_defaults.png</file>
+        <file alias="main_quit_button_hover.png">system/main_window/main_quit_button_hover.png</file>
+        <file alias="main_quit_button_press.png">system/main_window/main_quit_button_press.png</file>
+
+    </qresource>
+</RCC>

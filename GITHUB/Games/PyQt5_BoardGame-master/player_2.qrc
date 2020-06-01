@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="Player_2">
+    <file>player_2.png</file>
+  </qresource>
+</RCC>

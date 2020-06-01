@@ -1,0 +1,6 @@
+Sound effects: www.freesound.org - Creative Commons 0 License
+Music: ericskiff.com/music - Creative Commons Attribution License
+        http://opengameart.org/content/generic-8-bit-jrpg-soundtrack - Creative Commons 3.0
+Background: wikimedia.org - Creative Commons Attribution License
+                          - Added grey background square behind game fields
+                          - Added labels on top of photo

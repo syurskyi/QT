@@ -1,0 +1,86 @@
+% Comment lines start with %-symbol (needs to be at the start of a new line) and those lines are skipped (also whitespace is skipped) when config file is read
+
+
+% values are set by specifying the parameter name and then use : symbol and write integer (or float, check the specs below) value
+% The only value which must always be set in config is the level_number (and it must be correct and tell how many levels there are already created with standard naming system, please don't change this value) 
+% NOTICE: new correct level_number values are appended to the file by the game. DO NOT REMOVE THOSE (at least the biggest value) causes overwriting old levels
+% level_number is used to name levels as my_level1, my_level2 and so on (see LevelEditor)
+
+level_number:1
+
+
+
+% Possible parameter values (the must be spelled just as they are represented below and don't use dublicates especially with static object height or width) 
+% Notice: they are not necessary but if you specify an enemy or a player object height and width you must specify static_object's counterparts before enemy and player size
+% also if you want to change the fall_y or jump_y values, specify the static_object_height first
+
+% distance_x: tells how much there is space on the left side of the first object (in a level starting view)
+% it's an integer 0-500 (strongly advised not to set too big values or you must play on full screen mode)
+
+% distance_right_limit: tells how close the player needs to be the right edge of the screen before the screen is updated
+(needs to be an integer 0-200, advised to be set from 20 to 80 depending of the size of the objects)
+
+% empty_line_height: tells how many pixels are not drawn if there are empty lines in level files (above objects, symbols - - -)
+% it's an integer 0-70 (it is strongly advised to be set relatively small number (5-30), otherwise objects don't fit in the screen properly)
+
+% static_object_height: tells static object height (it must be a positive number ,an integer, (1-500) and it's recommended to keep it in the range of 10-50)
+% static_object_width: tells static object width (can differ from height, same recommended values apply)
+
+% enemy_height: tells an enemy object height (needs to be smaller than than static object height)
+% enemy_width: tells an enemy object width ( needs to be smaller than (or equal) than static object width)
+
+% player_height: tells the player object height (needs to be smaller than static object height, also recommended to be bigger than the enemy's counterpart)
+% player_width: tells the player object width (need to be smaller than (or equal) then static object width, recommended to be bigger than the enemy's counterpart)
+
+% player_speed: tells how many pixels player moves right or left during one cycle (number (float)in the range of 0-100, use a small number (ie. 2-5) for smooth gameplay, too big value >= static_object_width will cause game function inproperly)
+% player_jump_x: tells how much player moves sideways while jumping (a number (float) in the range of 0-50, good value is level specific if value too big player can't jump sideways)
+% player_jump_y: tells how much player moves upwards in one jump cycle (an integer in the range of 1-static_object_height, smaller values -> smoother gameplay, bigger values -> faster jump time)
+% player_jump_max_height: tells how high the player can jump (in pixels, 0-1000, an integer,  if too big player will disappear from the screen, but it needs to be bigger than static object height (note that this is not checked))
+% before setting the jump value you must set static_object_height
+% player_fall_y: tells how fast player falls, it's like a gravity constant (an integer in the range of 1-static_object_height, smaller values -> smoother gameplay, bigger values -> faster falling)
+% before setting the fall value you must set static_object_height
+% player_fall_x: same as jump_x but for falling (it doesn't have to be same as jump_x, but if you want parabel trajectory, use same value)
+
+% enemy_speed: tells enemy speed (a number (float) in the range of 0-100, smaller-> easier gameplay, bigger-> harder gameplay, too big (>= static_object_width) will cause game not to function properly)
+% enemy_fall_y: tells how fast enemies fall (has the same specs as player_fall_y)  
+
+
+% invisible_object_height: tells invisible object height, an integer, (strongly recommended to keep this value relatively small and there is little need to change it because the
+% standard value 5 should pretty much always be ok. However, if you set static object height really big, you may want to adjust invisible object height to 1/10 * static object height)
+% must be smaller than (or equal) to static_object_heigth (again, use much smaller values) and static object height must be declared prior this parameter
+
+%distance_x:0
+
+%distance_right_limit : 100
+
+%empty_line_height : 10
+
+%static_object_height : 20
+%static_object_width:30
+
+%enemy_height:10
+%enemy_width:15
+
+%player_height : 19
+%player_width : 20
+
+%player_speed:5.5555555
+%player_jump_x: 3
+%player_jump_y: 20
+%player_fall_y : 20
+%player_fall_x : 5
+
+
+%player_jump_max_height: 298
+
+%enemy_speed : 2
+%enemy_fall_y : 20
+
+%invisible_object_height : 5
+
+
+ 
+
+
+
+

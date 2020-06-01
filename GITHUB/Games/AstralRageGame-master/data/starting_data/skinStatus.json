@@ -1,0 +1,1 @@
+{"skins": [{"available": true, "name": "Basic SpaceShip", "path": "basicPlayer", "price": 0}, {"available": false, "name": "UFO", "path": "ufo", "price": 250}, {"available": false, "name": "Silver Wing", "path": "silverShip", "price": 500}, {"available": false, "name": "Galactic Cat", "path": "benek", "price": 1000}]}
