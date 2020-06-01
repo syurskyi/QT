@@ -87,9 +87,6 @@ class ProgrammingDialog(QDialog):
 
 
 
-
-
-
 if __name__ == "__main__":
 
     programming = ["Python", "Java", "C#", "C++", "Ruby", "Kotlin"]
