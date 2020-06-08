@@ -2,6 +2,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from ui_manage_employees import EmployeeWindow
+from ui_charts import ChartsWindow
 
 
 class Ui_MainWindow(object):
@@ -56,7 +57,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.employeeWindow.show()
 
     def view_charts_button_clicked(self):
-        self.hiede()
-        self.chartsWindow = ChartsWindows(self)
+        self.hide()
+        self.chartsWindow = ChartsWindow(self)
         self.chartsWindow.show()
 

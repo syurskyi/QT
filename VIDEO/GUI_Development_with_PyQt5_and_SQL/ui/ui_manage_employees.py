@@ -175,3 +175,10 @@ class EmployeeWindow(QtWidgets.QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.ui.backButton.clicked.connect(self.on_backButton_clicked)
+
+    def on_backButton_clicked(self):
+        self.hide()
+        self.mainMenu.show()
+
