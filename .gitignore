@@ -215,3 +215,14 @@ venv.bak/
 .mypy_cache/
 
 *.qmlc
+/VIDEO/Advanced_Python_Scripting/001_Base Python/fixSeq.py.tar.gz
+/VIDEO/Advanced_Python_Scripting/001_Base Python/fixSeq.py.tar/fixSeq.py.tar
+/VIDEO/Advanced_Python_Scripting/001_Base Python/makeProjectFolders.py.tar/makeProjectFolders.py.tar
+/VIDEO/Advanced_Python_Scripting/001_Base Python/renamer_2_versions.tar/renamer_2_versions.tar
+/VIDEO/Advanced_Python_Scripting/001_Base Python/renamer_2_versions.tar.gz
+/VIDEO/Advanced_Python_Scripting/006_Additional materials/archive.zip
+/VIDEO/Advanced_Python_Scripting/007_Base_PySide/ExampleCalculator/Calc.zip
+/VIDEO/Advanced_Python_Scripting/007_Base_PySide/ExampleCalculator/Calc3.zip
+/VIDEO/Advanced_Python_Scripting/019_Processes and flows/process_example.zip
+/VIDEO/Advanced_Python_Scripting/019_Processes and flows/thread_example.zip
+/VIDEO/Advanced_Python_Scripting/021_Networking Basics/network_example.zip

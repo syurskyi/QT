@@ -25,8 +25,18 @@ class MyForm(QDialog):
         studentObj=Student(self.ui.lineEditName.text())  
         self.ui.labelResponse.setText("Hello "+studentObj.printName())
 
-if __name__=="__main__":    
-    app = QApplication(sys.argv)
-    w = MyForm()
-    w.show()
-    sys.exit(app.exec_())
+
+
+if __name__ == '__main__':
+    import sys
+
+    app = None
+    try:
+        import nuke
+    except ImportError:
+        app = QApplication(sys.argv)
+    main = MyForm()
+    main.show()
+
+    if app is not None:
+        app.exec_()
