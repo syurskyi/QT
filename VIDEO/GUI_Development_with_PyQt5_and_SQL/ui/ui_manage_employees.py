@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from ui_new_employee import EmployeeDialog
 
 
 class Ui_MainWindow(object):
@@ -179,8 +180,13 @@ class EmployeeWindow(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
         self.ui.backButton.clicked.connect(self.on_backButton_clicked)
+        self.ui.newButton.clicked.connect(self.on_newButton_clicked)
 
     def on_backButton_clicked(self):
         self.hide()
         self.mainMenu.show()
+
+    def on_newButton_clicked(self):
+        self.employeeDialog = EmployeeDialog()
+        result = self.employeeDialog.exec()
 
