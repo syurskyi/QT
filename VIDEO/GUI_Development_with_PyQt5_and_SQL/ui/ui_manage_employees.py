@@ -172,6 +172,8 @@ class EmployeeWindow(QtWidgets.QMainWindow):
 
     def __init__(self, mainMenu):
         super(EmployeeWindow, self).__init__()
+        self.mainMenu = mainMenu
+
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)

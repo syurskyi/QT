@@ -47,11 +47,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.ui.manageEmployeesButton.clicked.connect(self.manage_emplyees_button_clicked)
+        self.ui.manageEmployeesButton.clicked.connect(self.manage_employees_button_clicked)
         self.ui.viewChartsButton.clicked.connect(self.view_charts_button_clicked)
 
-
-    def manage_emplyees_button_clicked(self):
+    def manage_employees_button_clicked(self):
         self.hide()
         self.employeeWindow = EmployeeWindow(self)
         self.employeeWindow.show()
