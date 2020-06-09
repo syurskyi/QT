@@ -6,10 +6,13 @@ from ui_new_employee import EmployeeDialog
 from database import Database
 
 
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1340, 678)
+        MainWindow.resize(853, 718)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.centralwidget)
@@ -131,9 +134,6 @@ class Ui_MainWindow(object):
         self.gridLayout.addItem(spacerItem6, 0, 3, 1, 1)
         self.gridLayout_2.addLayout(self.gridLayout, 2, 0, 1, 2)
         self.gridLayout_3.addWidget(self.widget, 1, 0, 1, 1)
-        self.tableView = QtWidgets.QTableView(self.centralwidget)
-        self.tableView.setObjectName("tableView")
-        self.gridLayout_3.addWidget(self.tableView, 2, 0, 1, 1)
         self.bottomGridLaout = QtWidgets.QGridLayout()
         self.bottomGridLaout.setObjectName("bottomGridLaout")
         spacerItem7 = QtWidgets.QSpacerItem(998, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -148,6 +148,11 @@ class Ui_MainWindow(object):
         self.exportButton.setObjectName("exportButton")
         self.bottomGridLaout.addWidget(self.exportButton, 0, 3, 1, 1)
         self.gridLayout_3.addLayout(self.bottomGridLaout, 3, 0, 1, 1)
+        self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
+        self.tableWidget.setObjectName("tableWidget")
+        self.tableWidget.setColumnCount(0)
+        self.tableWidget.setRowCount(0)
+        self.gridLayout_3.addWidget(self.tableWidget, 2, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -155,7 +160,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Manage Employess"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Manage Empoyee"))
         self.toolButton.setText(_translate("MainWindow", "..."))
         self.idLabel.setText(_translate("MainWindow", "Id"))
         self.firstNameLabel.setText(_translate("MainWindow", "First Name"))
@@ -177,7 +182,6 @@ class EmployeeWindow(QtWidgets.QMainWindow):
         super(EmployeeWindow, self).__init__()
         self.mainMenu = mainMenu
 
-
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
@@ -187,13 +191,16 @@ class EmployeeWindow(QtWidgets.QMainWindow):
         self.ui.newButton.clicked.connect(self.on_newButton_clicked)
 
     def init_table(self):
+        # pass
         self.db = Database()
         employee_list = self.db.get_employee_full_info()
         header_list = employee_list[0]
-        value_list = employee_list[0]
+        value_list = employee_list[1]
 
         no_rows = len(value_list)
+        print(no_rows)
         no_columns = len(header_list)
+        print(no_columns)
 
         self.ui.tableWidget.setRowCount(no_rows)
         self.ui.tableWidget.setColumnCount(no_columns)
@@ -204,8 +211,8 @@ class EmployeeWindow(QtWidgets.QMainWindow):
 
         for row in range(no_rows):
             for col in range(no_columns):
+                # print(s)
                 self.ui.tableWidget.setItem(row, col, QTableWidgetItem(str(value_list[row][col])))
-
 
     def on_backButton_clicked(self):
         self.hide()
@@ -214,4 +221,4 @@ class EmployeeWindow(QtWidgets.QMainWindow):
     def on_newButton_clicked(self):
         self.employeeDialog = EmployeeDialog()
         result = self.employeeDialog.exec()
-
+#

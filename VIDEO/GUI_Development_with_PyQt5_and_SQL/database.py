@@ -5,19 +5,22 @@ class Database:
     is_instance = False
     
     def __init__(self):
+        # pass
         if not Database.is_instance:
             print('Database has been instantiated')
             self.db = QSqlDatabase.addDatabase('QSQLITE')
             self.db.setDatabaseName('database.db')
             self.db.open()
             Database.is_instance = True
+            print('Its still working')
         else:
             print('Has already been created')
 
     def get_employee_full_info(self):
+        print('I am in get_employee_full_info function ')
         query = QSqlQuery()
 
-        query_string = """SELECT employee.id as ID employee.first_name as "First Name", employee.last_name as "Last Name"
+        query_string = """SELECT employee.id as ID, employee.first_name as "First Name", employee.last_name as "Last Name",
 	                      employee.birthday as "Birthday", employee.department_name as "Department Name",
 	                      log_salary.salary as "Salary", log_position.position as "Position"
                           FROM employee, log_salary, log_position

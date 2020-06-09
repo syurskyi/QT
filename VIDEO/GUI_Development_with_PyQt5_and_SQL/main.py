@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets
 from ui_mainmenu import MainWindow
+from database import Database
 
 if __name__ == "__main__":
     import sys
@@ -9,3 +10,8 @@ if __name__ == "__main__":
     mainWindow.show()
 
     sys.exit(app.exec_())
+
+    # database = Database()
+    # print(database.get_employee_full_info()[0])
+    # print(database.get_employee_full_info()[1])
+

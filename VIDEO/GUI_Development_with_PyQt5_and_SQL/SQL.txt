@@ -1,4 +1,4 @@
-SELECT employee.id as ID employee.first_name as "First Name", employee.last_name as "Last Name"
+SELECT employee.id as ID, employee.first_name as "First Name", employee.last_name as "Last Name",
 	   employee.birthday as "Birthday", employee.department_name as "Department Name",
 	   log_salary.salary as "Salary", log_position.position as "Position"
 FROM employee, log_salary, log_position
