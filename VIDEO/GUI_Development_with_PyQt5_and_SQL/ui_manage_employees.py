@@ -2,8 +2,10 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
 from ui_new_employee import EmployeeDialog
 from database import Database
+from ui_salary_position import EmployeeInfoWindow
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -187,6 +189,8 @@ class EmployeeWindow(QtWidgets.QMainWindow):
 
         self.init_table()
 
+        self.ui.tableWidget.viewport().installEventFilter(self)
+
         self.ui.backButton.clicked.connect(self.on_backButton_clicked)
         self.ui.newButton.clicked.connect(self.on_newButton_clicked)
 
@@ -213,6 +217,39 @@ class EmployeeWindow(QtWidgets.QMainWindow):
             for col in range(no_columns):
                 # print(s)
                 self.ui.tableWidget.setItem(row, col, QTableWidgetItem(str(value_list[row][col])))
+
+    def eventFilter(self, obj, event):
+        if (obj == self.ui.tableWidget.viewport() and event.type() == QEvent.MouseButtonPress):
+
+            if event.button() == Qt.RightButton:
+                idx = self.ui.tableWidget.indexAt(event.pos())
+
+                if idx.isValid():
+                    deleteAction = QAction("Delete", self)
+                    deleteAction.triggered.connect(self.delete_action_triggered)
+
+                    modifyAction = QAction('Modify', self)
+                    modifyAction.setObjectName(str(idx.row()))
+                    modifyAction.triggered.connect(self.modify_action_triggered)
+
+                    contextMenu = QMenu(self)
+                    contextMenu.addAction(deleteAction)
+                    contextMenu.addAction(modifyAction)
+
+                    contextMenu.exec(event.globalPos())
+
+        return QMainWindow.eventFilter(self, obj, event)
+
+    def delete_action_triggered(self):
+        print("Delete")
+
+    def modify_action_triggered(self):
+        print("Modify")
+        row = int(QObject.sender(self).objectName())
+        id = int(self.ui.tableWidget.item(row, 0).text())
+        self.employeeInfoWindow = EmployeeInfoWindow(id)
+        self.employeeInfoWindow.show()
+
 
     def on_backButton_clicked(self):
         self.hide()

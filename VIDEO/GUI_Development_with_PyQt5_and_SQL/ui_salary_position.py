@@ -101,3 +101,20 @@ class Ui_MainWindow(object):
         self.positionLogLabel.setText(_translate("MainWindow", "Position Log"))
         self.changeSalaryButton.setText(_translate("MainWindow", "Change Salary"))
         self.changePositionButton.setText(_translate("MainWindow", "Change Position"))
+
+
+class EmployeeInfoWindow(QtWidgets.QMainWindow):
+
+    def __init__(self, id):
+        super(EmployeeInfoWindow, self).__init__()
+
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.id = id
+
+        print(self.id)
+
+
+
+
+
