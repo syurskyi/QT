@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import *
 from ui_new_employee import EmployeeDialog
+from database import Database
 
 
 class Ui_MainWindow(object):
@@ -179,8 +181,31 @@ class EmployeeWindow(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.init_table()
+
         self.ui.backButton.clicked.connect(self.on_backButton_clicked)
         self.ui.newButton.clicked.connect(self.on_newButton_clicked)
+
+    def init_table(self):
+        self.db = Database()
+        employee_list = self.db.get_employee_full_info()
+        header_list = employee_list[0]
+        value_list = employee_list[0]
+
+        no_rows = len(value_list)
+        no_columns = len(header_list)
+
+        self.ui.tableWidget.setRowCount(no_rows)
+        self.ui.tableWidget.setColumnCount(no_columns)
+
+        self.ui.tableWidget.setHorizontalHeaderLabels(tuple(header_list))
+        self.ui.tableWidget.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.ui.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+
+        for row in range(no_rows):
+            for col in range(no_columns):
+                self.ui.tableWidget.setItem(row, col, QTableWidgetItem(str(value_list[row][col])))
+
 
     def on_backButton_clicked(self):
         self.hide()
