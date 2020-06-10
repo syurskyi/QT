@@ -1,5 +1,6 @@
 from PyQt5 import QtSql
 from PyQt5.QtSql import *
+from datetime import datetime
 
 class Database:
     is_instance = False
@@ -115,3 +116,15 @@ class Database:
         return(header_list, result_list)
 
 
+    def insert_new_salary(self, id, new_salary, reason):
+        query = QSqlQuery()
+
+        query.prepare("""INSERT INTO log_salary(employee_id, salary, date, reason)
+                         VALUES(:e_id, :salary, :date, :reason)""")
+
+        query.bindValue(":e_id", id)
+        query.bindValue(":salary", new_salary)
+        query.bindValue(":date", datetime.today().strftime('%Y-%m-%d'))
+        query.bindValue(":reason", reason)
+
+        return query.exec()

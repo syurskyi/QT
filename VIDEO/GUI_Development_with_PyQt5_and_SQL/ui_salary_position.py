@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import *
 from database import Database
+from ui_change_salary_dialog import SalaryDialog
 
 
 class Ui_MainWindow(object):
@@ -115,19 +117,50 @@ class EmployeeInfoWindow(QtWidgets.QMainWindow):
 
         self.init_tables()
 
+        self.ui.changeSalaryButton.clicked.connect(self.change_salary_button_clicked)
+
         print(self.id)
 
     def init_tables(self):
         self.database = Database()
 
-        result_salary = database.get_salary_for_employee(self.id)
-        result_position = database.get_position_for_employee(self.id)
+        result_salary = self.database.get_salary_log_for_employee(self.id)
+        result_position = self.database.get_position_log_for_employee(self.id)
 
         self.init_table(self.ui.salaryTableWidget, result_salary[0], result_salary[1])
         self.init_table(self.ui.positionTableWidget, result_position[0], result_position[1])
 
 
     def init_table(self, tableWidget, header_list, values_list):
+
+        no_rows = len(values_list)
+        no_columns = len(header_list)
+
+        tableWidget.clear()
+        tableWidget.setRowCount(no_rows)
+        tableWidget.setColumnCount(no_columns)
+
+        tableWidget.setHorizontalHeaderLabels(tuple(header_list))
+        tableWidget.setSelectionMode(QAbstractItemView.SingleSelection)
+        tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+
+        for row in range(no_rows):
+            for col in range(no_columns):
+                # print(s)
+                tableWidget.setItem(row, col, QTableWidgetItem(str(values_list[row][col])))
+
+    def change_salary_button_clicked(self):
+        last_row = self.ui.salaryTableWidget.rowCount() - 1
+        self.salaryDialog = SalaryDialog(self.ui.salaryTableWidget.item(last_row, 0).text(),
+                                         self.ui.salaryTableWidget.item(last_row, 1).text(),
+                                         self.ui.salaryTableWidget.item(last_row, 3).text())
+
+        result = self.salaryDialog.exec()
+
+        if result == QtWidgets.QDialog.Accepted:
+            self.database.insert_new_salary(self.id, self.salaryDialog.new_salary, self.salaryDialog.reason)
+            
+            self.init_table()
 
 
 
