@@ -160,10 +160,4 @@ class EmployeeInfoWindow(QtWidgets.QMainWindow):
         if result == QtWidgets.QDialog.Accepted:
             self.database.insert_new_salary(self.id, self.salaryDialog.new_salary, self.salaryDialog.reason)
             
-            self.init_table()
-
-
-
-
-
-
+            self.init_tables()
