@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from database import Database
 
 
 class Ui_MainWindow(object):
@@ -112,7 +113,22 @@ class EmployeeInfoWindow(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         self.id = id
 
+        self.init_tables()
+
         print(self.id)
+
+    def init_tables(self):
+        self.database = Database()
+
+        result_salary = database.get_salary_for_employee(self.id)
+        result_position = database.get_position_for_employee(self.id)
+
+        self.init_table(self.ui.salaryTableWidget, result_salary[0], result_salary[1])
+        self.init_table(self.ui.positionTableWidget, result_position[0], result_position[1])
+
+
+    def init_table(self, tableWidget, header_list, values_list):
+
 
 
 
