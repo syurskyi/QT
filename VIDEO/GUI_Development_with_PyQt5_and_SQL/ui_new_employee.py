@@ -2,6 +2,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import resources
 
 
 class Ui_Dialog(object):
@@ -32,6 +33,9 @@ class Ui_Dialog(object):
         self.birthdayToolButton = QtWidgets.QToolButton(Dialog)
         self.birthdayToolButton.setText("")
         self.birthdayToolButton.setObjectName("birthdayToolButton")
+
+        self.birthdayToolButton.setIcon(QtGui.QIcon(":/resources/ic-calendar.png"))
+
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.birthdayToolButton)
         self.departmentLabel = QtWidgets.QLabel(Dialog)
         self.departmentLabel.setObjectName("departmentLabel")
