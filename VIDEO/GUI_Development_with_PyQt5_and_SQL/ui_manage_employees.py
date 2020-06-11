@@ -258,4 +258,7 @@ class EmployeeWindow(QtWidgets.QMainWindow):
     def on_newButton_clicked(self):
         self.employeeDialog = EmployeeDialog()
         result = self.employeeDialog.exec()
-#
+
+        if result == QtWidgets.QDialog.Accepted:
+
+

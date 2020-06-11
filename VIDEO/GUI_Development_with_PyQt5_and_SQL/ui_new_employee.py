@@ -3,6 +3,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import resources
+from employee_full_info import EmployeeFullInfo
+from ui_calendar_dialog import CalendarDialog
 
 
 class Ui_Dialog(object):
@@ -89,3 +91,29 @@ class EmployeeDialog(QtWidgets.QDialog):
 
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
+
+        self.employeeInfo = None
+
+        self.ui.saveButton.clicked.connect(self.save_button_clicked)
+        self.ui.birthdayToolButton.clicked.connect(self.birthday_button_clicked())
+
+    def save_button_clicked(self):
+        self.employeeInfo = EmployeeFullInfo(
+            self.ui.firstNameLineEdit.text(),
+            self.ui.lastNameLineEdit.text(),
+            self.birthday,
+            self.ui.departmentLineEdit.text(),
+            self.ui.salaryLineEdit.text(),
+            self.ui.positionLineEdit.text())
+
+        self.accept()
+
+
+
+    def birthday_button_clicked(self):
+        self.calendarDialog = CalendarDialog()
+        result = self.calendarDialog.exec()
+
+        if result == QtWidgets.QDialog.Accepted:
+            self.birthday = self.calendarDialog.date
+
