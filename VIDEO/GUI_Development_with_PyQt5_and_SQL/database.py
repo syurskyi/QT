@@ -128,3 +128,15 @@ class Database:
         query.bindValue(":reason", reason)
 
         return query.exec()
+
+    def insert_new_position(self, id, new_position):
+        query = QSqlQuery()
+
+        query.prepare("""INSERT INTO log_position(employee_id, position, date)
+                         VALUES(:e_id, :position, :date)""")
+
+        query.bindValue(":e_id", id)
+        query.bindValue(":position", new_position)
+        query.bindValue(":date", datetime.today().strftime('%Y-%m-%d'))
+
+        return query.exec()

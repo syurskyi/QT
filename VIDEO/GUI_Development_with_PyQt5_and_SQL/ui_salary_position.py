@@ -4,6 +4,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from database import Database
 from ui_change_salary_dialog import SalaryDialog
+from ui_change_position_dialog import PositionDialog
 
 
 class Ui_MainWindow(object):
@@ -118,6 +119,8 @@ class EmployeeInfoWindow(QtWidgets.QMainWindow):
         self.init_tables()
 
         self.ui.changeSalaryButton.clicked.connect(self.change_salary_button_clicked)
+        self.ui.changePositionButton.clicked.connect(self.change_position_button_clicked)
+
 
         print(self.id)
 
@@ -161,3 +164,18 @@ class EmployeeInfoWindow(QtWidgets.QMainWindow):
             self.database.insert_new_salary(self.id, self.salaryDialog.new_salary, self.salaryDialog.reason)
             
             self.init_tables()
+
+    def change_position_button_clicked(self):
+
+        last_row = self.ui.positionTableWidget.rowCount() - 1
+        self.positionDialog = PositionDialog(self.ui.positionTableWidget.item(last_row, 0).text(),
+                                         self.ui.positionTableWidget.item(last_row, 1).text(),
+                                         self.ui.positionTableWidget.item(last_row, 3).text())
+
+        result = self.positionDialog.exec()
+
+        if result == QtWidgets.QDialog.Accepted:
+            self.database.insert_new_position(self.id, self.positionDialog.new_position)
+
+            self.init_tables()
+

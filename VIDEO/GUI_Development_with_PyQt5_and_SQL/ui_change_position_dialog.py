@@ -62,3 +62,23 @@ class Ui_Dialog(object):
         self.currentPositionValueLabel.setText(_translate("Dialog", "TextLabel"))
         self.newPositionLabel.setText(_translate("Dialog", "New Position"))
         self.saveButton.setText(_translate("Dialog", "Save"))
+
+
+class PositionDialog(QtWidgets.QDialog):
+
+    def __init__(self, first_name, last_name, current_position):
+        super(PositionDialog, self).__init__()
+
+        self.ui = Ui_Dialog()
+        self.ui.setupUi(self)
+
+        self.ui.firstNameValueLabel.setText(first_name)
+        self.ui.lastNameValueLabel.setText(last_name)
+        self.ui.currentPositionValueLabel.setText(current_position)
+
+        self.ui.saveButton.clicked.connect(self.save_button_clicked)
+
+    def save_button_clicked(self):
+        self.new_position = self.ui.newPositionLineEdit.text()
+
+        self.accept()
