@@ -140,3 +140,46 @@ class Database:
         query.bindValue(":date", datetime.today().strftime('%Y-%m-%d'))
 
         return query.exec()
+
+    def get_last_employee_id(self):
+        query= QSqlQuery()
+
+        res = query.exec("""SELECT max(id) FROM employee""")
+
+        if query.next():
+            return query.value(0)
+
+        return 0
+
+    def insert_employee(self, employeeFullInfo):
+        query = QSqlQuery()
+
+        query.prepare("""INSERT INTO emplyee(first_name, last_name, birthday, department_name)
+                         VALUES(:fn, :ln, :birthday, :department)""")
+
+        query.bindValue(":fn", employeeFullInfo.firt_name)
+        query.bindValue(":ln", employeeFullInfo.last_name)
+        query.bindValue(":birhtday", employeeFullInfo.birthday)
+        query.bindValue(":department", employeeFullInfo.department)
+
+        query.exec()
+
+        id = self.get_last_employee_id()
+
+        query.prepare("""INSERT INTO log_position(employee_id, position, date)
+                         VALUES(:e_id, :pos, :date)""")
+        query.bindValue(":e_id", id)
+        query.bindValue(":pos", employeeFullInfo.position)
+        query.bindValue(":date", datetime.today().strftime('%Y-%m-%d'))
+
+        query.exec()
+
+        query.prepare("""INSERT INTO log_salary(employee_id, salary, date
+                         VALUES(:e_id, :salary, :date)""")
+
+        query.bindValue(":e_id", id)
+        query.bindValue(":salary", employeeFullInfo.salary)
+        query.bindValue(":date", datetime.today().strftime('%Y-%m-%d'))
+
+        query.exec()
+

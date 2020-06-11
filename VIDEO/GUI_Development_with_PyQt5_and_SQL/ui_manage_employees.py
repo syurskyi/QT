@@ -260,5 +260,7 @@ class EmployeeWindow(QtWidgets.QMainWindow):
         result = self.employeeDialog.exec()
 
         if result == QtWidgets.QDialog.Accepted:
+            self.db.insert_employee(self.employeeDialog.employeeInfo)
+
 
 

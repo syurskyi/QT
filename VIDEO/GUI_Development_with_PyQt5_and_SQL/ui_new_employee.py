@@ -95,7 +95,7 @@ class EmployeeDialog(QtWidgets.QDialog):
         self.employeeInfo = None
 
         self.ui.saveButton.clicked.connect(self.save_button_clicked)
-        self.ui.birthdayToolButton.clicked.connect(self.birthday_button_clicked())
+        self.ui.birthdayToolButton.clicked.connect(self.birthday_button_clicked)
 
     def save_button_clicked(self):
         self.employeeInfo = EmployeeFullInfo(
