@@ -192,15 +192,52 @@ class EmployeeWindow(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.init_field_map()
+
         self.init_table()
 
         self.ui.tableWidget.viewport().installEventFilter(self)
 
         self.ui.backButton.clicked.connect(self.on_backButton_clicked)
         self.ui.newButton.clicked.connect(self.on_newButton_clicked)
-        self.ui.toolButton.clicked.connect(self.filter_button_clicked)
+        self.ui.toolButton.clicked.connect(self.filters_button_clicked)
+        self.ui.applyButton.clicked.connect(self.apply_button_clicked)
 
-    def filter_button_clicked(self):
+    def init_field_map(self):
+        self.fieldMap = {}
+        self.find[self.ui.idLineEdit.objectName()] = "employee.id"
+        self.find[self.ui.firstNameLineEdit.objectName()] = "employee.first_name"
+        self.find[self.ui.lastNameLineEdit.objectName()] = "employee.last_name"
+        self.find[self.ui.birthdayLineEdit.objectName()] = "employee.birthday"
+        self.find[self.ui.departmentNameLineEdit.objectName()] = "employee.department_name"
+        self.find[self.ui.salaryLineEdit.objectName()] = "employee.salary"
+        self.find[self.ui.positionLineEdit.objectName()] = "employee.position"
+
+
+    def apply_button_clicked(self):
+        condition_list = []
+
+        if self.ui.idLineEdit.text():
+            condition_list.append([self.fieldMap[self.ui.idLineEdit.objectName()], "\"" + self.ui.idLineEdit.text() + "\""])
+
+        if self.ui.firstNameLineEdit.text():
+            condition_list.append([self.fieldMap[self.ui.firstNameLineEdit.objectName()], "\"" + self.ui.firstNameLineEdit.text() + "\""])
+
+        if self.ui.lastNameLineEdit.text():
+            condition_list.append([self.fieldMap[self.ui.lastNameLineEdit.objectName()], "\"" + self.ui.lastNameLineEdit.text() + "\""])
+
+        if self.ui.birthdayLineEdit.text():
+            condition_list.append([self.fieldMap[self.ui.birthdayLineEdit.objectName()], "\"" + self.ui.birthdayLineEdit.text() + "\""])
+
+        if self.ui.departmentNameLineEdit.text():
+            condition_list.append([self.fieldMap[self.ui.departmentNameLineEdit.objectName()], "\"" + self.ui.departmentNameLineEdit.text() + "\""])
+
+        if self.ui.positionLineEdit.text():
+            condition_list.append([self.fieldMap[self.ui.positionLineEdit.objectName()], "\"" + self.ui.positionLineEdit.text() + "\""])
+
+
+
+    def filters_button_clicked(self):
         print("toolButton has been clicked")
         if self.ui.widget.isVisible():
             self.ui.widget.hide()
