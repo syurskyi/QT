@@ -6,6 +6,7 @@ from PyQt5.QtCore import *
 from ui_new_employee import EmployeeDialog
 from database import Database
 from ui_salary_position import EmployeeInfoWindow
+import resources
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -31,6 +32,10 @@ class Ui_MainWindow(object):
         self.toolButton = QtWidgets.QToolButton(self.widget)
         self.toolButton.setObjectName("toolButton")
         self.gridLayout_2.addWidget(self.toolButton, 0, 0, 1, 1)
+
+        self.toolButton.setIcon(QtGui.QIcon(":/resources/ic-arrow_up.png"))
+        self.toolButton.setAutoRaise(True)
+
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         spacerItem1 = QtWidgets.QSpacerItem(158, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
