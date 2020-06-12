@@ -249,13 +249,15 @@ class EmployeeWindow(QtWidgets.QMainWindow):
         id = int(self.ui.tableWidget.item(row, 0).text())
         self.employeeInfoWindow = EmployeeInfoWindow(id)
         self.employeeInfoWindow.show()
-
+    #
 
     def on_backButton_clicked(self):
+        print("Back Button Clicked")
         self.hide()
         self.mainMenu.show()
 
     def on_newButton_clicked(self):
+        print("New Employee")
         self.employeeDialog = EmployeeDialog()
         result = self.employeeDialog.exec()
 

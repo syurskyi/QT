@@ -154,7 +154,7 @@ class Database:
     def insert_employee(self, employeeFullInfo):
         query = QSqlQuery()
 
-        query.prepare("""INSERT INTO emplyee(first_name, last_name, birthday, department_name)
+        query.prepare("""INSERT INTO employee(first_name, last_name, birthday, department_name)
                          VALUES(:fn, :ln, :birthday, :department)""")
 
         query.bindValue(":fn", employeeFullInfo.firt_name)

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 import resources
 from employee_full_info import EmployeeFullInfo
@@ -88,7 +87,6 @@ class EmployeeDialog(QtWidgets.QDialog):
 
     def __init__(self):
         super(EmployeeDialog, self).__init__()
-
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
@@ -107,8 +105,6 @@ class EmployeeDialog(QtWidgets.QDialog):
             self.ui.positionLineEdit.text())
 
         self.accept()
-
-
 
     def birthday_button_clicked(self):
         self.calendarDialog = CalendarDialog()
