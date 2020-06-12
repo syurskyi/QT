@@ -34,7 +34,7 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.toolButton, 0, 0, 1, 1)
 
         self.toolButton.setIcon(QtGui.QIcon(":/resources/ic-arrow_up.png"))
-        self.toolButton.setAutoRaise(True)
+        # self.toolButton.setAutoRaise(True)
 
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -198,6 +198,17 @@ class EmployeeWindow(QtWidgets.QMainWindow):
 
         self.ui.backButton.clicked.connect(self.on_backButton_clicked)
         self.ui.newButton.clicked.connect(self.on_newButton_clicked)
+        self.ui.toolButton.clicked.connect(self.filter_button_clicked)
+
+    def filter_button_clicked(self):
+        print("toolButton has been clicked")
+        if self.ui.widget.isVisible():
+            self.ui.widget.hide()
+            self.ui.toolButton.setIcon(QtGui.QIcon(":/resources/ic-arrow_down.png"))
+            print("Widget has been hidden")
+        else:
+            self.ui.widget.show()
+            self.ui.toolButton.setIcon(QtGui.QIcon(":/resources/ic-arrow_up.png"))
 
     def init_table(self):
         # pass
