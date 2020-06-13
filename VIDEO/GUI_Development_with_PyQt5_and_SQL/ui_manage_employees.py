@@ -131,12 +131,12 @@ class Ui_MainWindow(object):
         self.gridLayout.setObjectName("gridLayout")
         spacerItem5 = QtWidgets.QSpacerItem(228, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem5, 0, 0, 1, 1)
-        self.pushButton = QtWidgets.QPushButton(self.widget)
-        self.pushButton.setObjectName("pushButton")
-        self.gridLayout.addWidget(self.pushButton, 0, 1, 1, 1)
-        self.pushButton_2 = QtWidgets.QPushButton(self.widget)
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.gridLayout.addWidget(self.pushButton_2, 0, 2, 1, 1)
+        self.applyButton = QtWidgets.QPushButton(self.widget)
+        self.applyButton.setObjectName("applyButton")
+        self.gridLayout.addWidget(self.applyButton, 0, 1, 1, 1)
+        self.resetButton = QtWidgets.QPushButton(self.widget)
+        self.resetButton.setObjectName("resetButton")
+        self.gridLayout.addWidget(self.resetButton, 0, 2, 1, 1)
         spacerItem6 = QtWidgets.QSpacerItem(178, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem6, 0, 3, 1, 1)
         self.gridLayout_2.addLayout(self.gridLayout, 2, 0, 1, 2)
@@ -167,7 +167,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Manage Empoyee"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.toolButton.setText(_translate("MainWindow", "..."))
         self.idLabel.setText(_translate("MainWindow", "Id"))
         self.firstNameLabel.setText(_translate("MainWindow", "First Name"))
@@ -176,8 +176,8 @@ class Ui_MainWindow(object):
         self.departmentNameLabel.setText(_translate("MainWindow", "Department Name"))
         self.salaryLabel.setText(_translate("MainWindow", "Salary"))
         self.positionLabel.setText(_translate("MainWindow", "Position"))
-        self.pushButton.setText(_translate("MainWindow", "Apply"))
-        self.pushButton_2.setText(_translate("MainWindow", "PushButton"))
+        self.applyButton.setText(_translate("MainWindow", "Apply"))
+        self.resetButton.setText(_translate("MainWindow", "Reset"))
         self.backButton.setText(_translate("MainWindow", "Back"))
         self.newButton.setText(_translate("MainWindow", "New"))
         self.exportButton.setText(_translate("MainWindow", "Export"))
@@ -205,13 +205,13 @@ class EmployeeWindow(QtWidgets.QMainWindow):
 
     def init_field_map(self):
         self.fieldMap = {}
-        self.find[self.ui.idLineEdit.objectName()] = "employee.id"
-        self.find[self.ui.firstNameLineEdit.objectName()] = "employee.first_name"
-        self.find[self.ui.lastNameLineEdit.objectName()] = "employee.last_name"
-        self.find[self.ui.birthdayLineEdit.objectName()] = "employee.birthday"
-        self.find[self.ui.departmentNameLineEdit.objectName()] = "employee.department_name"
-        self.find[self.ui.salaryLineEdit.objectName()] = "employee.salary"
-        self.find[self.ui.positionLineEdit.objectName()] = "employee.position"
+        self.fieldMap[self.ui.idLineEdit.objectName()] = "employee.id"
+        self.fieldMap[self.ui.firstNameLineEdit.objectName()] = "employee.first_name"
+        self.fieldMap[self.ui.lastNameLineEdit.objectName()] = "employee.last_name"
+        self.fieldMap[self.ui.birthdayLineEdit.objectName()] = "employee.birthday"
+        self.fieldMap[self.ui.departmentNameLineEdit.objectName()] = "employee.department_name"
+        self.fieldMap[self.ui.salaryLineEdit.objectName()] = "employee.salary"
+        self.fieldMap[self.ui.positionLineEdit.objectName()] = "employee.position"
 
 
     def apply_button_clicked(self):
@@ -234,6 +234,8 @@ class EmployeeWindow(QtWidgets.QMainWindow):
 
         if self.ui.positionLineEdit.text():
             condition_list.append([self.fieldMap[self.ui.positionLineEdit.objectName()], "\"" + self.ui.positionLineEdit.text() + "\""])
+        
+        self.reload_table(condition_list)
 
 
 
@@ -250,7 +252,7 @@ class EmployeeWindow(QtWidgets.QMainWindow):
     def init_table(self):
         # pass
         self.db = Database()
-        employee_list = self.db.get_employee_full_info()
+        employee_list = self.db.get_employee_full_info([])
         header_list = employee_list[0]
         value_list = employee_list[1]
 
@@ -269,6 +271,24 @@ class EmployeeWindow(QtWidgets.QMainWindow):
         for row in range(no_rows):
             for col in range(no_columns):
                 # print(s)
+                self.ui.tableWidget.setItem(row, col, QTableWidgetItem(str(value_list[row][col])))
+
+    def reload_table(self, conditionList):
+        self.ui.tableWidget.setRowCount(0)
+
+        result_list = self.db.get_employee_full_info(conditionList)
+
+        header_list = result_list[0]
+        value_list = result_list[1]
+
+        no_rows = len(value_list)
+        no_columns = len(header_list)
+
+        self.ui.tableWidget.setRowCount(no_rows)
+        self.ui.tableWidget.setColumnCount(no_columns)
+
+        for row in range(no_rows):
+            for col in range(no_columns):
                 self.ui.tableWidget.setItem(row, col, QTableWidgetItem(str(value_list[row][col])))
 
     def eventFilter(self, obj, event):

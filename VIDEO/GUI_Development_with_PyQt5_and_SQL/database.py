@@ -81,7 +81,7 @@ class Database:
         return (header_list, result_list)
 
 
-    def get_employee_full_info(self):
+    def get_employee_full_info(self, conditionList):
         print('I am in get_employee_full_info function ')
         query = QSqlQuery()
 
@@ -92,6 +92,25 @@ class Database:
                           WHERE employee.id = log_salary.employee_id AND employee.id = log_position.employee_id
                           and log_salary.date = (SELECT max(date) FROM log_salary WHERE employee_id = employee.id)
                           and log_position.date = (SELECT max(date) FROM log_position WHERE employee_id = employee.id)"""
+
+        condition = ""
+        list_length = len(conditionList)
+
+        for i in range(list_length - 1):
+            condition += conditionList[i][0]
+            condition += " = "
+            condition += conditionList[i][1]
+            condition += "and "
+
+        if list_length > 0:
+            condition += conditionList[list_length - 1][0]
+            condition += " = "
+            condition += conditionList[list_length -1][1]
+
+        if condition:
+            query_string += " and " + condition
+
+        print(query_string)
 
         res = query.exec(query_string)
 
