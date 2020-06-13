@@ -202,6 +202,7 @@ class EmployeeWindow(QtWidgets.QMainWindow):
         self.ui.newButton.clicked.connect(self.on_newButton_clicked)
         self.ui.toolButton.clicked.connect(self.filters_button_clicked)
         self.ui.applyButton.clicked.connect(self.apply_button_clicked)
+        self.ui.resetButton.clicked.connect(self.reset_button_clicked)
 
     def init_field_map(self):
         self.fieldMap = {}
@@ -237,6 +238,16 @@ class EmployeeWindow(QtWidgets.QMainWindow):
         
         self.reload_table(condition_list)
 
+    def reset_button_clicked(self):
+        self.ui.idLineEdit.clear()
+        self.ui.firstNameLineEdit.clear()
+        self.ui.lastNameLineEdit.clear()
+        self.ui.birthdayLineEdit.clear()
+        self.ui.departmentNameLineEdit.clear()
+        self.ui.salaryLineEdit.clear()
+        self.ui.positionLineEdit.clear()
+
+        self.reload_table([])
 
 
     def filters_button_clicked(self):
