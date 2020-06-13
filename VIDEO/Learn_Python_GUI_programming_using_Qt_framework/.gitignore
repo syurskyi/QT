@@ -1,0 +1,49 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+### .gitignore template
+# Created by .ignore support plugin (hsz.mobi)
+
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+.idea/vcs.xml
+rebrand-subs/
+captions/
+page_*.jpeg
+exercises/
+Subtitles
+documents/
+.env/
+logs.txt
+data.db
+*.key
+*.indd
+*.png
+.DS_Store
+.vscode/
+__pycache__/
+*.scriv
+*.pyc
+*.screenflow
+*.mp4
+*.mov
+*.cmproj
+exports/
+videos/
+*.numbers
+*.sketch
+
+venv/
+.idea/Learn_Python_GUI_programming_using_Qt_framework.iml
+.idea/encodings.xml
+.idea/markdown-navigator/
+.idea/misc.xml
+.idea/modules.xml
+.idea/workspace.xml
+
