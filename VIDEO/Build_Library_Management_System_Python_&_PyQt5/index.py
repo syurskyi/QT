@@ -13,7 +13,6 @@ ui,_ = loadUiType('library.ui')
 login,_ = loadUiType('login.ui')
 
 
-
 class Login(QWidget , login):
     def __init__(self):
         QWidget.__init__(self)
