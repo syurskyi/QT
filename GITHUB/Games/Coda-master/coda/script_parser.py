@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import resources.script_resources
-
 from coda.data import *
 from coda.parser import *
 

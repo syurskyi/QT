@@ -1,6 +1,5 @@
 from PyQt5 import QtWidgets
-from ui_mainmenu import MainWindow
-from database import Database
+from my.ui_mainmenu import MainWindow
 
 if __name__ == "__main__":
     import sys

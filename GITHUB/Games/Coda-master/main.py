@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import resources.icon_resources
 
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *

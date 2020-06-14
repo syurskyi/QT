@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from PyQt5 import QtCore, QtGui, QtWidgets
-from ui_manage_employees import EmployeeWindow
-from ui_charts import ChartsWindow
+from PyQt5 import QtCore, QtWidgets
+from my.ui_manage_employees import EmployeeWindow
+from my.ui_charts import ChartsWindow
 
 
 class Ui_MainWindow(object):

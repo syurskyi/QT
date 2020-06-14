@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
-from ui_new_employee import EmployeeDialog
-from database import Database
-from ui_salary_position import EmployeeInfoWindow
-import resources
-
+from my.ui_new_employee import EmployeeDialog
+from my.database import Database
+from my.ui_salary_position import EmployeeInfoWindow
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 

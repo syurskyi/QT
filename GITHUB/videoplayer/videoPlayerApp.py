@@ -2,7 +2,7 @@ from PyQt5 import QtGui
 from PyQt5 import phonon
 
 
-from ui import main
+from my.ui import main
 
 
 class VideoPlayerClass(main.Ui_MainWindow, QtGui.QMainWindow):

@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import resources
-from employee_full_info import EmployeeFullInfo
-from ui_calendar_dialog import CalendarDialog
+from my.employee_full_info import EmployeeFullInfo
+from my.ui_calendar_dialog import CalendarDialog
 
 
 class Ui_Dialog(object):

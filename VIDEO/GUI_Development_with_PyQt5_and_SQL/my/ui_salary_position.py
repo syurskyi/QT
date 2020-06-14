@@ -2,9 +2,9 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
-from database import Database
-from ui_change_salary_dialog import SalaryDialog
-from ui_change_position_dialog import PositionDialog
+from my.database import Database
+from my.ui_change_salary_dialog import SalaryDialog
+from my.ui_change_position_dialog import PositionDialog
 
 
 class Ui_MainWindow(object):

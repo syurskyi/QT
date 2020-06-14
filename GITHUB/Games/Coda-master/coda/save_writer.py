@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import resources.system_resources
-
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 

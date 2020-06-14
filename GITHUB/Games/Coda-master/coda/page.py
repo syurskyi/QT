@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import copy
 import coda.font
-import resources.system_resources
 
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *

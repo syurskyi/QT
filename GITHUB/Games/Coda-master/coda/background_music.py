@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import resources.background_music_resources
-
 from PyQt5.QtCore import *
 from PyQt5.QtMultimedia import *
 
