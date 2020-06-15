@@ -234,11 +234,11 @@ class EmployeeWindow(QtWidgets.QMainWindow):
         self.ui.exportButton.clicked.connect(self.export_button_clicked)
 
     def export_button_clicked(self):
-        path = QFileDialog.getSaveFileName(self, 'Save File', '', 'CSV(*.csv)')
+        path = QFileDialog.getSaveFileName(self, 'Save File', '', 'CSV(*.csv)') # save the path in queue file dialog that get saved by name.
 
-        if path:
-            with open(str(path[0]), 'w+', newline='') as stream:
-                writer = csv.writer(stream)
+        if path:                                                       #  check if the path is not known.
+            with open(str(path[0]), 'w+', newline='') as stream: #  open the path for which the user has selected which the user has selected for writing
+                writer = csv.writer(stream)                      #  instantiate the writer object for our Stream.
 
                 # write the header
                 row_data = []
