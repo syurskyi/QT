@@ -1,3 +1,5 @@
+
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -19,7 +21,6 @@ class Ui_Dialog(object):
         self.gridLayout.addWidget(self.saveButton, 1, 1, 1, 1)
         spacerItem1 = QtWidgets.QSpacerItem(96, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem1, 1, 2, 1, 1)
-
 
         Dialog.setStyleSheet("""
             QDialog {
@@ -65,11 +66,9 @@ class CalendarDialog(QtWidgets.QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
-
         self.date = None
 
         self.ui.saveButton.clicked.connect(self.save_button_clicked)
-
 
     def save_button_clicked(self):
         self.date = self.ui.calendarWidget.selectedDate()

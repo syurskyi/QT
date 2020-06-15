@@ -1,132 +1,117 @@
 # -*- coding: utf-8 -*-
 
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from my.ui_new_employee import EmployeeDialog
-from my.database import Database
-from my.ui_salary_position import EmployeeInfoWindow
-
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import QEvent, Qt, QObject
+from ui_new_employee import EmployeeDialog
+from database import Database
+from ui_salary_position import EmployeeInfoWindow
+import resources
+import csv
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(853, 718)
+        MainWindow.resize(900, 600)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.upperGridLayout = QtWidgets.QGridLayout()
         self.upperGridLayout.setObjectName("upperGridLayout")
-        spacerItem = QtWidgets.QSpacerItem(1098, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.upperGridLayout.addItem(spacerItem, 0, 0, 1, 1)
+        self.toolButton = QtWidgets.QToolButton(self.centralwidget)
+        self.toolButton.setObjectName("toolButton")
+        self.upperGridLayout.addWidget(self.toolButton, 0, 0, 1, 1)
+
+        self.toolButton.setIcon(QtGui.QIcon(":/resources/ic-arrow_up.png"))
+        self.toolButton.setAutoRaise(True)
+
+        spacerItem = QtWidgets.QSpacerItem(828, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.upperGridLayout.addItem(spacerItem, 0, 1, 1, 1)
         self.gridLayout_3.addLayout(self.upperGridLayout, 0, 0, 1, 1)
         self.widget = QtWidgets.QWidget(self.centralwidget)
         self.widget.setObjectName("widget")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.widget)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.toolButton = QtWidgets.QToolButton(self.widget)
-        self.toolButton.setObjectName("toolButton")
-        self.gridLayout_2.addWidget(self.toolButton, 0, 0, 1, 1)
-
-        self.toolButton.setIcon(QtGui.QIcon(":/resources/ic-arrow_up.png"))
-        # self.toolButton.setAutoRaise(True)
-
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        spacerItem1 = QtWidgets.QSpacerItem(158, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem1)
         self.formLayout = QtWidgets.QFormLayout()
         self.formLayout.setObjectName("formLayout")
+        self.formLayout.setLabelAlignment(QtCore.Qt.AlignRight)
         self.idLabel = QtWidgets.QLabel(self.widget)
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.idLabel.setFont(font)
         self.idLabel.setObjectName("idLabel")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.idLabel)
         self.idLineEdit = QtWidgets.QLineEdit(self.widget)
+        self.idLineEdit.setMaximumSize(QtCore.QSize(300, 16777215))
         self.idLineEdit.setObjectName("idLineEdit")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.idLineEdit)
         self.firstNameLabel = QtWidgets.QLabel(self.widget)
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.firstNameLabel.setFont(font)
         self.firstNameLabel.setObjectName("firstNameLabel")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.firstNameLabel)
         self.firstNameLineEdit = QtWidgets.QLineEdit(self.widget)
+        self.firstNameLineEdit.setMaximumSize(QtCore.QSize(300, 16777215))
         self.firstNameLineEdit.setObjectName("firstNameLineEdit")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.firstNameLineEdit)
         self.lastNameLabel = QtWidgets.QLabel(self.widget)
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.lastNameLabel.setFont(font)
         self.lastNameLabel.setObjectName("lastNameLabel")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.lastNameLabel)
         self.lastNameLineEdit = QtWidgets.QLineEdit(self.widget)
+        self.lastNameLineEdit.setMaximumSize(QtCore.QSize(300, 16777215))
         self.lastNameLineEdit.setObjectName("lastNameLineEdit")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.lastNameLineEdit)
         self.birthdayLabel = QtWidgets.QLabel(self.widget)
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.birthdayLabel.setFont(font)
         self.birthdayLabel.setObjectName("birthdayLabel")
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.birthdayLabel)
         self.birthdayLineEdit = QtWidgets.QLineEdit(self.widget)
+        self.birthdayLineEdit.setMaximumSize(QtCore.QSize(300, 16777215))
         self.birthdayLineEdit.setText("")
         self.birthdayLineEdit.setObjectName("birthdayLineEdit")
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.birthdayLineEdit)
         self.horizontalLayout.addLayout(self.formLayout)
-        spacerItem2 = QtWidgets.QSpacerItem(128, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem2)
-        self.gridLayout_2.addLayout(self.horizontalLayout, 1, 0, 1, 1)
+        self.gridLayout_2.addLayout(self.horizontalLayout, 0, 0, 1, 1)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        spacerItem3 = QtWidgets.QSpacerItem(158, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem3 = QtWidgets.QSpacerItem(81, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem3)
         self.formLayout_2 = QtWidgets.QFormLayout()
         self.formLayout_2.setObjectName("formLayout_2")
-        self.departmentNameLabel = QtWidgets.QLabel(self.widget)
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.departmentNameLabel.setFont(font)
-        self.departmentNameLabel.setObjectName("departmentNameLabel")
-        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.departmentNameLabel)
-        self.departmentNameLineEdit = QtWidgets.QLineEdit(self.widget)
-        self.departmentNameLineEdit.setObjectName("departmentNameLineEdit")
-        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.departmentNameLineEdit)
+        self.formLayout_2.setLabelAlignment(QtCore.Qt.AlignRight)
+        self.departmentLabel = QtWidgets.QLabel(self.widget)
+        self.departmentLabel.setObjectName("departmentLabel")
+        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.departmentLabel)
+        self.departmentLineEdit = QtWidgets.QLineEdit(self.widget)
+        self.departmentLineEdit.setMaximumSize(QtCore.QSize(300, 16777215))
+        self.departmentLineEdit.setText("")
+        self.departmentLineEdit.setObjectName("departmentLineEdit")
+        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.departmentLineEdit)
         self.salaryLabel = QtWidgets.QLabel(self.widget)
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.salaryLabel.setFont(font)
         self.salaryLabel.setObjectName("salaryLabel")
         self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.salaryLabel)
         self.salaryLineEdit = QtWidgets.QLineEdit(self.widget)
+        self.salaryLineEdit.setMaximumSize(QtCore.QSize(300, 16777215))
+        self.salaryLineEdit.setText("")
         self.salaryLineEdit.setObjectName("salaryLineEdit")
         self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.salaryLineEdit)
         self.positionLabel = QtWidgets.QLabel(self.widget)
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.positionLabel.setFont(font)
         self.positionLabel.setObjectName("positionLabel")
         self.formLayout_2.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.positionLabel)
         self.positionLineEdit = QtWidgets.QLineEdit(self.widget)
+        self.positionLineEdit.setMaximumSize(QtCore.QSize(300, 16777215))
+        self.positionLineEdit.setText("")
         self.positionLineEdit.setObjectName("positionLineEdit")
         self.formLayout_2.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.positionLineEdit)
         self.horizontalLayout_2.addLayout(self.formLayout_2)
-        spacerItem4 = QtWidgets.QSpacerItem(148, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem4)
-        self.gridLayout_2.addLayout(self.horizontalLayout_2, 1, 1, 1, 1)
+        self.gridLayout_2.addLayout(self.horizontalLayout_2, 0, 1, 1, 1)
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
-        spacerItem5 = QtWidgets.QSpacerItem(228, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem5 = QtWidgets.QSpacerItem(118, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem5, 0, 0, 1, 1)
         self.applyButton = QtWidgets.QPushButton(self.widget)
         self.applyButton.setObjectName("applyButton")
@@ -134,48 +119,94 @@ class Ui_MainWindow(object):
         self.resetButton = QtWidgets.QPushButton(self.widget)
         self.resetButton.setObjectName("resetButton")
         self.gridLayout.addWidget(self.resetButton, 0, 2, 1, 1)
-        spacerItem6 = QtWidgets.QSpacerItem(178, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem6 = QtWidgets.QSpacerItem(118, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem6, 0, 3, 1, 1)
-        self.gridLayout_2.addLayout(self.gridLayout, 2, 0, 1, 2)
+        self.gridLayout_2.addLayout(self.gridLayout, 1, 0, 1, 2)
         self.gridLayout_3.addWidget(self.widget, 1, 0, 1, 1)
-        self.bottomGridLaout = QtWidgets.QGridLayout()
-        self.bottomGridLaout.setObjectName("bottomGridLaout")
-        spacerItem7 = QtWidgets.QSpacerItem(998, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.bottomGridLaout.addItem(spacerItem7, 0, 0, 1, 1)
-        self.backButton = QtWidgets.QPushButton(self.centralwidget)
-        self.backButton.setObjectName("backButton")
-        self.bottomGridLaout.addWidget(self.backButton, 0, 1, 1, 1)
-        self.newButton = QtWidgets.QPushButton(self.centralwidget)
-        self.newButton.setObjectName("newButton")
-        self.bottomGridLaout.addWidget(self.newButton, 0, 2, 1, 1)
-        self.exportButton = QtWidgets.QPushButton(self.centralwidget)
-        self.exportButton.setObjectName("exportButton")
-        self.bottomGridLaout.addWidget(self.exportButton, 0, 3, 1, 1)
-        self.gridLayout_3.addLayout(self.bottomGridLaout, 3, 0, 1, 1)
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
         self.gridLayout_3.addWidget(self.tableWidget, 2, 0, 1, 1)
+        self.bottomGridLayout = QtWidgets.QGridLayout()
+        self.bottomGridLayout.setObjectName("bottomGridLayout")
+        spacerItem7 = QtWidgets.QSpacerItem(638, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.bottomGridLayout.addItem(spacerItem7, 0, 0, 1, 1)
+        self.backButton = QtWidgets.QPushButton(self.centralwidget)
+        self.backButton.setObjectName("backButton")
+        self.bottomGridLayout.addWidget(self.backButton, 0, 1, 1, 1)
+        self.newButton = QtWidgets.QPushButton(self.centralwidget)
+        self.newButton.setObjectName("newButton")
+        self.bottomGridLayout.addWidget(self.newButton, 0, 2, 1, 1)
+        self.exportButton = QtWidgets.QPushButton(self.centralwidget)
+        self.exportButton.setObjectName("exportButton")
+        self.bottomGridLayout.addWidget(self.exportButton, 0, 3, 1, 1)
+        self.gridLayout_3.addLayout(self.bottomGridLayout, 3, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
+
+
+        self.centralwidget.setStyleSheet("""
+            QWidget#centralwidget {
+                background-color: rgb(55,64,88);
+            }
+
+            QLabel {
+                color: white;
+                font-size: 8pt;
+                font-family: Verdana;
+            }
+
+            QPushButton {
+                border-radius: 5px;
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-top:4px;
+                padding-bottom:4px;
+                font-size: 8pt;
+                font-family: Verdana;
+                border: 1px solid rgb(45,52,71);
+                color:white;
+                background-color: rgb(94,109,148);
+            }
+
+            QPushButton:hover {
+                background-color: rgb(112, 126, 164);
+            }
+
+            QPushButton:hover:pressed {
+                background-color: rgb(129, 141, 175);
+            }
+
+            QTableWidget {
+                background-color: #ced3e0;
+            }
+
+            QToolButton {
+                color: white;
+            }
+
+            QHeaderView::section {
+                background-color: #abb3ca;
+            }
+            """)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Manage Employees"))
         self.toolButton.setText(_translate("MainWindow", "..."))
-        self.idLabel.setText(_translate("MainWindow", "Id"))
-        self.firstNameLabel.setText(_translate("MainWindow", "First Name"))
-        self.lastNameLabel.setText(_translate("MainWindow", "Last Name"))
-        self.birthdayLabel.setText(_translate("MainWindow", "Birthday"))
-        self.departmentNameLabel.setText(_translate("MainWindow", "Department Name"))
-        self.salaryLabel.setText(_translate("MainWindow", "Salary"))
-        self.positionLabel.setText(_translate("MainWindow", "Position"))
+        self.idLabel.setText(_translate("MainWindow", "Id:"))
+        self.firstNameLabel.setText(_translate("MainWindow", "First Name:"))
+        self.lastNameLabel.setText(_translate("MainWindow", "Last Name:"))
+        self.birthdayLabel.setText(_translate("MainWindow", "Birthday:"))
+        self.departmentLabel.setText(_translate("MainWindow", "Department Name:"))
+        self.salaryLabel.setText(_translate("MainWindow", "Salary:"))
+        self.positionLabel.setText(_translate("MainWindow", "Position:"))
         self.applyButton.setText(_translate("MainWindow", "Apply"))
         self.resetButton.setText(_translate("MainWindow", "Reset"))
-        self.backButton.setText(_translate("MainWindow", "Back"))
+        self.backButton.setText(_translate("MainWindow", "← Back"))
         self.newButton.setText(_translate("MainWindow", "New"))
         self.exportButton.setText(_translate("MainWindow", "Export"))
 
@@ -195,11 +226,37 @@ class EmployeeWindow(QtWidgets.QMainWindow):
 
         self.ui.tableWidget.viewport().installEventFilter(self)
 
-        self.ui.backButton.clicked.connect(self.on_backButton_clicked)
-        self.ui.newButton.clicked.connect(self.on_newButton_clicked)
+        self.ui.backButton.clicked.connect(self.back_button_clicked)
+        self.ui.newButton.clicked.connect(self.new_button_clicked)
         self.ui.toolButton.clicked.connect(self.filters_button_clicked)
         self.ui.applyButton.clicked.connect(self.apply_button_clicked)
         self.ui.resetButton.clicked.connect(self.reset_button_clicked)
+        self.ui.exportButton.clicked.connect(self.export_button_clicked)
+
+    def export_button_clicked(self):
+        path = QFileDialog.getSaveFileName(self, 'Save File', '', 'CSV(*.csv)')
+
+        if path:
+            with open(str(path[0]), 'w+', newline='') as stream:
+                writer = csv.writer(stream)
+
+                # write the header
+                row_data = []
+                for col in range(self.ui.tableWidget.columnCount()):
+                    row_data.append(self.ui.tableWidget.horizontalHeaderItem(col).text())
+
+                writer.writerow(row_data)
+
+                for row in range(self.ui.tableWidget.rowCount()):
+                    row_data = []
+
+                    for col in range(self.ui.tableWidget.columnCount()):
+                        item = self.ui.tableWidget.item(row, col)
+                        if item is not None:
+                            row_data.append(item.text())
+                        else:
+                            row_data.append('')
+                    writer.writerow(row_data)
 
     def init_field_map(self):
         self.fieldMap = {}
@@ -207,9 +264,20 @@ class EmployeeWindow(QtWidgets.QMainWindow):
         self.fieldMap[self.ui.firstNameLineEdit.objectName()] = "employee.first_name"
         self.fieldMap[self.ui.lastNameLineEdit.objectName()] = "employee.last_name"
         self.fieldMap[self.ui.birthdayLineEdit.objectName()] = "employee.birthday"
-        self.fieldMap[self.ui.departmentNameLineEdit.objectName()] = "employee.department_name"
-        self.fieldMap[self.ui.salaryLineEdit.objectName()] = "employee.salary"
-        self.fieldMap[self.ui.positionLineEdit.objectName()] = "employee.position"
+        self.fieldMap[self.ui.departmentLineEdit.objectName()] = "employee.department_name"
+        self.fieldMap[self.ui.salaryLineEdit.objectName()] = "salary"
+        self.fieldMap[self.ui.positionLineEdit.objectName()] = "position"
+
+    def reset_button_clicked(self):
+        self.ui.idLineEdit.clear()
+        self.ui.firstNameLineEdit.clear()
+        self.ui.lastNameLineEdit.clear()
+        self.ui.birthdayLineEdit.clear()
+        self.ui.departmentLineEdit.clear()
+        self.ui.salaryLineEdit.clear()
+        self.ui.positionLineEdit.clear()
+
+        self.reload_table([])
 
 
     def apply_button_clicked(self):
@@ -227,25 +295,16 @@ class EmployeeWindow(QtWidgets.QMainWindow):
         if self.ui.birthdayLineEdit.text():
             condition_list.append([self.fieldMap[self.ui.birthdayLineEdit.objectName()], "\"" + self.ui.birthdayLineEdit.text() + "\""])
 
-        if self.ui.departmentNameLineEdit.text():
-            condition_list.append([self.fieldMap[self.ui.departmentNameLineEdit.objectName()], "\"" + self.ui.departmentNameLineEdit.text() + "\""])
+        if self.ui.departmentLineEdit.text():
+            condition_list.append([self.fieldMap[self.ui.departmentLineEdit.objectName()], "\"" + self.ui.departmentLineEdit.text() + "\""])
+
+        if self.ui.salaryLineEdit.text():
+            condition_list.append([self.fieldMap[self.ui.salaryLineEdit.objectName()], "\"" + self.ui.salaryLineEdit.text() + "\""])
 
         if self.ui.positionLineEdit.text():
             condition_list.append([self.fieldMap[self.ui.positionLineEdit.objectName()], "\"" + self.ui.positionLineEdit.text() + "\""])
-        
+
         self.reload_table(condition_list)
-
-    def reset_button_clicked(self):
-        self.ui.idLineEdit.clear()
-        self.ui.firstNameLineEdit.clear()
-        self.ui.lastNameLineEdit.clear()
-        self.ui.birthdayLineEdit.clear()
-        self.ui.departmentNameLineEdit.clear()
-        self.ui.salaryLineEdit.clear()
-        self.ui.positionLineEdit.clear()
-
-        self.reload_table([])
-
 
     def filters_button_clicked(self):
         print("toolButton has been clicked")
@@ -258,7 +317,6 @@ class EmployeeWindow(QtWidgets.QMainWindow):
             self.ui.toolButton.setIcon(QtGui.QIcon(":/resources/ic-arrow_up.png"))
 
     def init_table(self):
-        # pass
         self.db = Database()
         employee_list = self.db.get_employee_full_info([])
         header_list = employee_list[0]
@@ -275,10 +333,11 @@ class EmployeeWindow(QtWidgets.QMainWindow):
         self.ui.tableWidget.setHorizontalHeaderLabels(tuple(header_list))
         self.ui.tableWidget.setSelectionMode(QAbstractItemView.SingleSelection)
         self.ui.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.ui.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.ui.tableWidget.verticalHeader().hide()
 
         for row in range(no_rows):
             for col in range(no_columns):
-                # print(s)
                 self.ui.tableWidget.setItem(row, col, QTableWidgetItem(str(value_list[row][col])))
 
     def reload_table(self, conditionList):
@@ -307,6 +366,7 @@ class EmployeeWindow(QtWidgets.QMainWindow):
 
                 if idx.isValid():
                     deleteAction = QAction("Delete", self)
+                    deleteAction.setObjectName(str(idx.row()))
                     deleteAction.triggered.connect(self.delete_action_triggered)
 
                     modifyAction = QAction('Modify', self)
@@ -322,28 +382,39 @@ class EmployeeWindow(QtWidgets.QMainWindow):
         return QMainWindow.eventFilter(self, obj, event)
 
     def delete_action_triggered(self):
-        print("Delete")
+        print("delete")
+        reply = QMessageBox.question(self, "Delete", "Are you sure you want to delete this employee?",
+                                            QMessageBox.Yes | QMessageBox.No)
+
+        if reply == QMessageBox.Yes:
+            row = int(QObject.sender(self).objectName())
+
+            self.db.delete_employee(self.ui.tableWidget.item(row, 0).text())
+            self.ui.tableWidget.removeRow(row)
+
 
     def modify_action_triggered(self):
         print("Modify")
         row = int(QObject.sender(self).objectName())
+
         id = int(self.ui.tableWidget.item(row, 0).text())
+
         self.employeeInfoWindow = EmployeeInfoWindow(id)
         self.employeeInfoWindow.show()
-    #
 
-    def on_backButton_clicked(self):
+    def back_button_clicked(self):
         print("Back Button Clicked")
         self.hide()
         self.mainMenu.show()
 
-    def on_newButton_clicked(self):
+    def new_button_clicked(self):
         print("New Employee")
         self.employeeDialog = EmployeeDialog()
         result = self.employeeDialog.exec()
 
         if result == QtWidgets.QDialog.Accepted:
             self.db.insert_employee(self.employeeDialog.employeeInfo)
+            self.reload_table([])
 
 
 

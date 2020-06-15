@@ -1,10 +1,5 @@
-# -*- coding: utf-8 -*-
-
-import sys
 from PyQt5 import QtWidgets
 from ui_mainmenu import MainWindow
-from database import Database
-
 
 if __name__ == "__main__":
     import sys

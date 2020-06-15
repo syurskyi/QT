@@ -1,6 +1,9 @@
 # This Python file uses the following encoding: utf-8
-from PyQt5 import QtWidgets
+import sys
+from PyQt5 import QtWidgets, QtCore
 from mainmenu import MainWindow
+from database import Database
+
 
 if __name__ == "__main__":
     import sys

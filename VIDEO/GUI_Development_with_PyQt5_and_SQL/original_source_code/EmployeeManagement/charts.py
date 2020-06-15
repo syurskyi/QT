@@ -1,8 +1,10 @@
-from PyQt5 import QtCore, QtWidgets
+
+
+from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPainter
 from PyQt5.QtChart import *
 from PyQt5.QtWidgets import *
-from my.database import Database
+from database import Database
 
 
 class Ui_MainWindow(object):
@@ -57,7 +59,6 @@ class Ui_MainWindow(object):
             }
             """)
 
-
         self.firstLayout = QGridLayout(self.widget)
         self.secondLayout = QGridLayout(self.widget_2)
 
@@ -99,7 +100,6 @@ class ChartsWindow(QtWidgets.QMainWindow):
         self.secondChart.addSeries(self.secondSeries)
         self.secondChart.setTitle("Total salaries per department")
 
-
         self.firstChartView = QChartView(self.firstChart)
         self.firstChartView.setRenderHint(QPainter.Antialiasing)
 
@@ -110,7 +110,6 @@ class ChartsWindow(QtWidgets.QMainWindow):
         self.ui.secondLayout.addWidget(self.secondChartView)
 
         self.ui.backButton.clicked.connect(self.back_button_clicked)
-
 
     def load_first_series(self):
         resultList = self.database.get_salary_statistics()
@@ -127,15 +126,12 @@ class ChartsWindow(QtWidgets.QMainWindow):
         self.firstSeries.append(avgBarSet)
         self.firstSeries.append(maxBarSet)
 
-
     def load_second_series(self):
         result_list = self.database.get_total_department_salaries()
 
         for entry in result_list:
             self.secondSeries.append(entry[0], entry[1])
 
-
     def back_button_clicked(self):
         self.hide()
         self.mainMenu.show()
-

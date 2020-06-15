@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import resources
 from employee_full_info import EmployeeFullInfo
 from ui_calendar_dialog import CalendarDialog
 
@@ -9,12 +8,12 @@ from ui_calendar_dialog import CalendarDialog
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(313, 374)
+        Dialog.resize(432, 429)
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         self.formLayout = QtWidgets.QFormLayout()
         self.formLayout.setContentsMargins(20, 20, 20, 20)
-        self.formLayout.setVerticalSpacing(30)
+        self.formLayout.setVerticalSpacing(25)
         self.formLayout.setObjectName("formLayout")
         self.firstNameLabel = QtWidgets.QLabel(Dialog)
         self.firstNameLabel.setObjectName("firstNameLabel")
@@ -31,12 +30,9 @@ class Ui_Dialog(object):
         self.birthdayLabel = QtWidgets.QLabel(Dialog)
         self.birthdayLabel.setObjectName("birthdayLabel")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.birthdayLabel)
-        self.formLayout.setLabelAlignment(QtCore.Qt.AlignRight)
-
         self.birthdayToolButton = QtWidgets.QToolButton(Dialog)
         self.birthdayToolButton.setText("")
         self.birthdayToolButton.setObjectName("birthdayToolButton")
-        self.birthdayToolButton.setAutoRaise(True)
 
         self.birthdayToolButton.setIcon(QtGui.QIcon(":/resources/ic-calendar.png"))
 
@@ -60,56 +56,23 @@ class Ui_Dialog(object):
         self.positionLineEdit.setObjectName("positionLineEdit")
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.positionLineEdit)
         self.gridLayout.addLayout(self.formLayout, 0, 0, 1, 3)
-        spacerItem = QtWidgets.QSpacerItem(91, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(131, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem, 1, 0, 1, 1)
         self.saveButton = QtWidgets.QPushButton(Dialog)
         self.saveButton.setObjectName("saveButton")
         self.gridLayout.addWidget(self.saveButton, 1, 1, 1, 1)
-        spacerItem1 = QtWidgets.QSpacerItem(91, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem1 = QtWidgets.QSpacerItem(131, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem1, 1, 2, 1, 1)
         self.gridLayout.setColumnStretch(0, 1)
         self.gridLayout.setColumnStretch(1, 1)
         self.gridLayout.setColumnStretch(2, 1)
-
-        Dialog.setStyleSheet("""
-            QDialog {
-                background-color: rgb(55,64,88);
-            }
-
-            QLabel {
-                color: white;
-                font-size: 8pt;
-                font-family: Verdana;
-            }
-
-            QPushButton {
-                border-radius: 5px;
-                padding-left: 10px;
-                padding-right: 10px;
-                padding-top:4px;
-                padding-bottom:4px;
-                font-size: 8pt;
-                font-family: Verdana;
-                border: 1px solid rgb(45,52,71);
-                color:white;
-                background-color: rgb(94,109,148);
-            }
-
-            QPushButton:hover {
-                background-color: rgb(112, 126, 164);
-            }
-
-            QPushButton:hover:pressed {
-                background-color: rgb(129, 141, 175);
-            }
-            """)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "New Employee"))
+        Dialog.setWindowTitle(_translate("Dialog", "New Empoyee"))
         self.firstNameLabel.setText(_translate("Dialog", "First Name"))
         self.lastNameLabel.setText(_translate("Dialog", "Last Name"))
         self.birthdayLabel.setText(_translate("Dialog", "Birthday"))
@@ -127,7 +90,6 @@ class EmployeeDialog(QtWidgets.QDialog):
         self.ui.setupUi(self)
 
         self.employeeInfo = None
-        self.birthday = None
 
         self.ui.saveButton.clicked.connect(self.save_button_clicked)
         self.ui.birthdayToolButton.clicked.connect(self.birthday_button_clicked)

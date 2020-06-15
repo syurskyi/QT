@@ -9,17 +9,11 @@ class Database:
         if not Database.is_instantiated:
             print("Database has been instantiated!")
             self.db = QSqlDatabase.addDatabase("QSQLITE")
-            self.db.setDatabaseName("C:/Users/LiViU/Documents/EmployeeManagement/database/database.db")
+            self.db.setDatabaseName("database.db")
             self.db.open()
             Database.is_instantiated = True
         else:
             print("Has already been created")
-
-
-
-
-
-
 
     def get_salary_log_for_employee(self, id):
         query = QSqlQuery()
@@ -29,7 +23,6 @@ class Database:
                          log_salary.reason as "Reason", log_salary.date as "Date"
                          FROM employee, log_salary
                          WHERE employee.id = log_salary.employee_id AND employee.id = :id"""
-
 
         query.prepare(queryString)
         query.bindValue(":id", id)
@@ -53,7 +46,6 @@ class Database:
             result_list.append(sublist)
 
         return [header_list, result_list]
-
 
     def get_position_log_for_employee(self, id):
         query = QSqlQuery()
@@ -88,9 +80,8 @@ class Database:
 
         return [header_list, result_list]
 
-
-
     def get_employee_full_info(self, conditionList):
+
         query = QSqlQuery()
 
         query_string = """SELECT employee.id as ID, employee.first_name as "First Name", employee.last_name as "Last Name",
@@ -143,7 +134,6 @@ class Database:
 
         return [header_list, result_list]
 
-
     # insert into log_salary
     def insert_new_salary(self, id, new_salary, reason):
         query = QSqlQuery()
@@ -158,7 +148,6 @@ class Database:
 
         return query.exec()
 
-
     def insert_new_position(self, id, new_position):
         query = QSqlQuery()
 
@@ -171,7 +160,6 @@ class Database:
 
         return query.exec()
 
-
     def get_last_employee_id(self):
         query = QSqlQuery()
 
@@ -182,14 +170,11 @@ class Database:
 
         return 0
 
-
     def insert_employee(self, employeeFullInfo):
         query = QSqlQuery()
 
-
         query.prepare("""insert into employee(first_name, last_name, birthday, department_name)
                          values(:fn, :ln, :birthday, :department)""")
-
 
         query.bindValue(":fn", employeeFullInfo.first_name)
         query.bindValue(":ln", employeeFullInfo.last_name)
@@ -217,9 +202,7 @@ class Database:
         query.bindValue(":salary", employeeFullInfo.salary)
         query.bindValue(":date", datetime.today().strftime('%Y-%m-%d %H:%M:%S'))
 
-
         query.exec()
-
 
     def delete_employee(self, id):
         query = QSqlQuery()
@@ -227,7 +210,6 @@ class Database:
         query.prepare("""delete from employee where id = :id""")
         query.bindValue(":id", id)
         query.exec()
-
 
         query.prepare("""delete from log_salary where employee_id = :id""")
         query.bindValue(":id", id)
@@ -246,12 +228,10 @@ class Database:
         if query.next():
             result_list[2] = query.value(0)
 
-
         query.exec("""select avg(salary) from log_salary""")
 
         if query.next():
             result_list[1] = query.value(0)
-
 
         query.exec("""select min(salary) from log_salary""")
 
@@ -261,7 +241,6 @@ class Database:
         print(result_list)
 
         return result_list
-
 
     def get_total_department_salaries(self):
         query = QSqlQuery()

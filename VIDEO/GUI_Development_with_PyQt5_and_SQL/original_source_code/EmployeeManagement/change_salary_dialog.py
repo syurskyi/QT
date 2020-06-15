@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'change_salary_dialog.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -111,7 +104,6 @@ class Ui_Dialog(object):
         self.reasonLineEdit.setPlaceholderText(_translate("Dialog", "Optional"))
         self.saveButton.setText(_translate("Dialog", "Save"))
 
-
 class SalaryDialog(QtWidgets.QDialog):
 
     def __init__(self, first_name, last_name, current_salary):
@@ -126,10 +118,8 @@ class SalaryDialog(QtWidgets.QDialog):
 
         self.ui.saveButton.clicked.connect(self.save_button_clicked)
 
-
     def save_button_clicked(self):
         self.new_salary = self.ui.newSalaryLineEdit.text()
         self.reason = self.ui.reasonLineEdit.text()
 
         self.accept()
-

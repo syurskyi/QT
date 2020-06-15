@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'change_position_dialog.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -104,6 +97,7 @@ class Ui_Dialog(object):
         self.newPositionLabel.setText(_translate("Dialog", "New position:"))
         self.saveButton.setText(_translate("Dialog", "Save"))
 
+
 class PositionDialog(QtWidgets.QDialog):
 
     def __init__(self, first_name, last_name, current_position):
@@ -118,9 +112,7 @@ class PositionDialog(QtWidgets.QDialog):
 
         self.ui.saveButton.clicked.connect(self.save_button_clicked)
 
-
     def save_button_clicked(self):
         self.new_position = self.ui.newPositionLineEdit.text()
 
         self.accept()
-
