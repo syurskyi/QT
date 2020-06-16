@@ -31,6 +31,7 @@ class Main(QMainWindow, FORM_CLASS):
         self.check_btn.clicked.connect(self.level)
         self.update_btn.clicked.connect(self.update)
         self.delete_btn.clicked.connect(self.delete)
+        self.add_btn.clicked.connect(self.add)
 
 
     def get_data(self):
@@ -173,6 +174,29 @@ class Main(QMainWindow, FORM_CLASS):
         cursor.execute(command, d)
 
         db.commit()
+
+    def add(self):
+
+        db = sqlite3.connect("parts.db")
+        cursor = db.cursor()
+
+        reference_ = self.reference.text()
+        part_name_ = self.part_name.text()
+        min_area_ = self.min_area.text()
+        max_area_ = self.max_area.text()
+        number_of_holes_ = self.number_of_holes.text()
+        min_diameter_ = self.min_diameter.text()
+        max_diameter_ = self.max_diameter.text()
+        count_ = str(self.count.value())
+
+        row = (reference_, part_name_, min_area_, max_area_, number_of_holes_, min_diameter_, max_diameter_, count_)
+
+        command = """INSERT INTO parts_table (Reference, PartName, MinArea, MaxArea, NumberOfHoles, MinDiameter, MaxDiameter, Count) VALUES(?, ?, ?, ?, ?, ?, ?, ?)"""
+
+        cursor.execute(command, row)
+
+        db.commit()
+
 
 
 def main():
