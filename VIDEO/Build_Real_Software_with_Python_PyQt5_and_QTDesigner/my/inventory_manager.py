@@ -44,6 +44,41 @@ class Main(QMainWindow, FORM_CLASS):
             for column_number, data in enumerate(row_data):
                 self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
 
+        cursor2 = db.cursor()
+        cursor3 = db.cursor()
+
+        parts_nbr = """SELECT COUNT (DISTINCT PartName) from parts_table"""
+        ref_nbr = """SELECT COUNT (DISTINCT Reference) from parts_table"""
+
+        result_ref_nbr = cursor2.execute(ref_nbr)
+        result_parts_nbr = cursor3.execute(parts_nbr)
+
+        self.lbl_ref_nbr.setText(str(result_ref_nbr.fetchone()[0]))
+        self.lbl_parts_nbr.setText(str(result_parts_nbr.fetchone()[0]))
+
+        # Display 4 results: Min, Max Nbr of holes in addition to their respective reference names
+
+        cursor4 = db.cursor()
+        cursor5 = db.cursor()
+
+        min_hole = """SELECT MIN(NumberOfHoles), Reference FROM parts_table"""
+        max_hole = """SELECT MAX(NumberOfHoles), Reference FROM parts_table"""
+
+        result_min_hole = cursor4.execute(min_hole)
+        result_max_hole = cursor5.execute(max_hole)
+        
+        r1 = result_min_hole.fetchone()
+        r2 = result_max_hole.fetchone()
+
+        # Print Results in QLabels
+        
+        self.lbl_min_hole.setText(str(r1[0]))
+        self.lbl_max_hole.setText(str(r2[0]))
+
+        self.lbl_min_hole_2.setText(str(r1[0]))
+        self.lbl_min_hole_2.setText(str(r2[0]))
+        
+
     def search(self):
 
         db = sqlite3.connect("parts.db")
@@ -60,6 +95,7 @@ class Main(QMainWindow, FORM_CLASS):
             self.table.insertRow(row_number)
             for column_number, data in enumerate(row_data):
                 self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+
 
 
 
