@@ -25,6 +25,8 @@ class MainApp(QMainWindow , ui):
         self.handel_ui_changes()
         self.handle_buttons()
 
+        self.show_category()
+
     def handel_ui_changes(self):
         self.hidding_themes()
         self.tabWidget.tabBar().setVisible(False)
@@ -84,8 +86,6 @@ class MainApp(QMainWindow , ui):
         book_publisher = self.comboBox_5.currentText()
         book_price = self.lineEdit_4.text()
 
-
-
     def search_books(self):
         pass
 
@@ -120,8 +120,27 @@ class MainApp(QMainWindow , ui):
 
         self.db.commit()
         self.statusBar().showMessage("New Category Added")
+        self.lineEdit_19.setText('')
+        self.show_category()
 
+    def show_category(self):
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
 
+        self.cur.execute("""SELECT category_name FROM category""")
+        data= self.cur.fetchall()
+        print(data)
+
+        if data:
+            self.tableWidget_2.setRowCount(0)
+            self.tableWidget_2.insertRow(0)
+            for row, form in enumerate(data):
+                for column, item in enumerate(form):
+                    self.tableWidget_2.setItem(row, column, QTableWidgetItem(str(item)))
+                    column += 1
+
+                row_position = self.tableWidget_2.rowCount()
+                self.tableWidget_2.insertRow(row_position)
 
     def add_author(self):
         self.db = sqlite3.connect(resource_path("db.db"))
@@ -132,7 +151,11 @@ class MainApp(QMainWindow , ui):
         self.cur.execute("""INSERT INTO authors (author_name) VALUES (?)""", (author_name,))
 
         self.db.commit()
+        self.lineEdit_20.setText('')
         self.statusBar().showMessage("New Author Added")
+
+    def show_author(self):
+        pass
 
     def add_publisher(self):
         self.db = sqlite3.connect(resource_path("db.db"))
@@ -143,12 +166,11 @@ class MainApp(QMainWindow , ui):
         self.cur.execute("""INSERT INTO publisher (publisher_name) VALUES (?)""", (publisher_name,))
 
         self.db.commit()
+        self.lineEdit_21.setText('')
         self.statusBar().showMessage("New Publisher Added")
 
-
-
-
-
+    def show_publisher(self):
+        pass
 
 
 def main():
