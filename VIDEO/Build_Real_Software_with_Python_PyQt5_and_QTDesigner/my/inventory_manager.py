@@ -9,14 +9,12 @@ from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtWidgets import QApplication
 
 import sys
+import sqlite3
 from os import path
 
 from PyQt5.uic import loadUiType
 
-
 FORM_CLASS,_ = loadUiType(path.join(path.dirname('__file__'), "main.ui"))
-
-import sqlite3
 
 
 class Main(QMainWindow, FORM_CLASS):
@@ -27,7 +25,27 @@ class Main(QMainWindow, FORM_CLASS):
         self.handle_buttons()
 
     def handle_buttons(self):
-        pass
+        self.refresh_btn.clicked.connect(self.get_data)
+
+    def get_data(self):
+        # Connect to Sqlite3 database add fill GUI table with
+        db = sqlite3.connect("parts.db")
+        cursor = db.cursor()
+        
+        command = """SELECT * from parts_table"""
+        
+        result = cursor.execute(command)
+        
+        self.table.setRowCount(0)
+        
+        for row_number, row_data in enumerate(result):
+            self.table.insertRow(row_number)
+            for column_number, data in enumerate(row_data):
+                self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+
+
+
+
 
 
 def main():
