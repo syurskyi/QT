@@ -44,6 +44,8 @@ class Main(QMainWindow, FORM_CLASS):
             for column_number, data in enumerate(row_data):
                 self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
 
+        # Display references number and type number in Statistics tab
+
         cursor2 = db.cursor()
         cursor3 = db.cursor()
 
@@ -71,12 +73,12 @@ class Main(QMainWindow, FORM_CLASS):
         r2 = result_max_hole.fetchone()
 
         # Print Results in QLabels
-        
+
         self.lbl_min_hole.setText(str(r1[0]))
         self.lbl_max_hole.setText(str(r2[0]))
 
-        self.lbl_min_hole_2.setText(str(r1[0]))
-        self.lbl_min_hole_2.setText(str(r2[0]))
+        self.lbl_min_hole_2.setText(str(r1[1]))
+        self.lbl_man_hole_2.setText(str(r2[1]))
         
 
     def search(self):
@@ -95,11 +97,6 @@ class Main(QMainWindow, FORM_CLASS):
             self.table.insertRow(row_number)
             for column_number, data in enumerate(row_data):
                 self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
-
-
-
-
-
 
 
 def main():
