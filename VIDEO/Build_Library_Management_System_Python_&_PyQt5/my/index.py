@@ -3,12 +3,19 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUiType
 import sys
+import os
+import sqlite3
 
 # ui = loadUiType('library.ui')[0]
 ui,_ = loadUiType('library.ui')
 
 # ui = loadUiType('library.ui')[0]
 # ui,_ = loadUiType('library.ui')
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
 
 
 class MainApp(QMainWindow , ui):
@@ -31,6 +38,12 @@ class MainApp(QMainWindow , ui):
         self.pushButton_26.clicked.connect(self.open_clients_tab)
         self.pushButton_3.clicked.connect(self.open_users_tab)
         self.pushButton_4.clicked.connect(self.open_settings_tab)
+
+        self.pushButton_7.clicked.connect(self.add_new_book)
+
+        self.pushButton_14.clicked.connect(self.add_category)
+        self.pushButton_15.clicked.connect(self.add_author)
+        self.pushButton_16.clicked.connect(self.add_publisher)
 
 
     def show_themes(self):
@@ -60,7 +73,18 @@ class MainApp(QMainWindow , ui):
     # ############################## Books ############################################################################
 
     def add_new_book(self):
-        pass
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        book_title = self.lineEdit_2.text()
+        book_description = self.textEdit.toPlainText
+        book_code = self.lineEdit_3.text()
+        book_category = self.comboBox_3.currentText()
+        book_author = self.comboBox_4.currentText()
+        book_publisher = self.comboBox_5.currentText()
+        book_price = self.lineEdit_4.text()
+
+
 
     def search_books(self):
         pass
@@ -82,6 +106,48 @@ class MainApp(QMainWindow , ui):
 
     def edit_user(self):
         pass
+
+    # #################################################################################################################
+    # ############################## Settings #########################################################################
+
+    def add_category(self):
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+        
+        category_name = self.lineEdit_19.text()
+        
+        self.cur.execute("""INSERT INTO category (category_name) VALUES (?)""", (category_name, ))
+
+        self.db.commit()
+        self.statusBar().showMessage("New Category Added")
+
+
+
+    def add_author(self):
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        author_name = self.lineEdit_20.text()
+
+        self.cur.execute("""INSERT INTO authors (author_name) VALUES (?)""", (author_name,))
+
+        self.db.commit()
+        self.statusBar().showMessage("New Author Added")
+
+    def add_publisher(self):
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        publisher_name = self.lineEdit_21.text()
+
+        self.cur.execute("""INSERT INTO publisher (publisher_name) VALUES (?)""", (publisher_name,))
+
+        self.db.commit()
+        self.statusBar().showMessage("New Publisher Added")
+
+
+
+
 
 
 
