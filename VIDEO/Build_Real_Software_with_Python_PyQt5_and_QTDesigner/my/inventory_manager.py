@@ -30,6 +30,7 @@ class Main(QMainWindow, FORM_CLASS):
         self.search_btn.clicked.connect(self.search)
         self.check_btn.clicked.connect(self.level)
         self.update_btn.clicked.connect(self.update)
+        self.delete_btn.clicked.connect(self.delete)
 
 
     def get_data(self):
@@ -159,6 +160,20 @@ class Main(QMainWindow, FORM_CLASS):
         cursor.execute(command, row)
 
         db.commit()
+
+    def delete(self):
+
+        db = sqlite3.connect("parts.db")
+        cursor = db.cursor()
+
+        d = self.id.text()
+
+        command = """DELETE FROM parts_table WHERE ID=?"""
+
+        cursor.execute(command, d)
+
+        db.commit()
+
 
 def main():
     app = QApplication(sys.argv)
