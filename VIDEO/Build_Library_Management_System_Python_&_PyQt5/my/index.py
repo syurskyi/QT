@@ -25,7 +25,10 @@ class MainApp(QMainWindow , ui):
         self.handel_ui_changes()
         self.handle_buttons()
 
+        self.show_author()
         self.show_category()
+        self.show_publisher()
+
 
     def handel_ui_changes(self):
         self.hidding_themes()
@@ -153,9 +156,25 @@ class MainApp(QMainWindow , ui):
         self.db.commit()
         self.lineEdit_20.setText('')
         self.statusBar().showMessage("New Author Added")
+        self.show_author()
 
     def show_author(self):
-        pass
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        self.cur.execute("""SELECT author_name FROM authors""")
+        data = self.cur.fetchall()
+
+        if data:
+            self.tableWidget_3.setRowCount(0)
+            self.tableWidget_3.insertRow(0)
+            for row, form in enumerate(data):
+                for column, item in enumerate(form):
+                    self.tableWidget_3.setItem(row, column, QTableWidgetItem(str(item)))
+                    column += 1
+
+                row_position = self.tableWidget_3.rowCount()
+                self.tableWidget_3.insertRow(row_position)
 
     def add_publisher(self):
         self.db = sqlite3.connect(resource_path("db.db"))
@@ -168,9 +187,25 @@ class MainApp(QMainWindow , ui):
         self.db.commit()
         self.lineEdit_21.setText('')
         self.statusBar().showMessage("New Publisher Added")
+        self.show_publisher()
 
     def show_publisher(self):
-        pass
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        self.cur.execute("""SELECT publisher_name FROM publisher""")
+        data = self.cur.fetchall()
+
+        if data:
+            self.tableWidget_4.setRowCount(0)
+            self.tableWidget_4.insertRow(0)
+            for row, form in enumerate(data):
+                for column, item in enumerate(form):
+                    self.tableWidget_4.setItem(row, column, QTableWidgetItem(str(item)))
+                    column += 1
+
+                row_position = self.tableWidget_4.rowCount()
+                self.tableWidget_4.insertRow(row_position)
 
 
 def main():
