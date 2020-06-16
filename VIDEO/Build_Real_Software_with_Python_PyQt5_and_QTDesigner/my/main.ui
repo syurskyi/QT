@@ -773,7 +773,7 @@ color: rgb(74, 105, 204);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>icon-spare-parts.png</pixmap>
+     <pixmap>../original_source_code/icon-spare-parts.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
