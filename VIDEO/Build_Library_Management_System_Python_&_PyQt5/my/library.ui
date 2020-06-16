@@ -23,6 +23,12 @@
       <height>61</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string>Day to day tab</string>
+    </property>
+    <property name="whatsThis">
+     <string/>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -45,6 +51,12 @@
       <width>71</width>
       <height>61</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string>Books Tab</string>
+    </property>
+    <property name="whatsThis">
+     <string/>
     </property>
     <property name="text">
      <string/>
@@ -91,6 +103,9 @@
       <width>71</width>
       <height>71</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string>Setting Tab</string>
     </property>
     <property name="text">
      <string/>
@@ -143,6 +158,9 @@
       <family>Segoe UI</family>
       <pointsize>12</pointsize>
      </font>
+    </property>
+    <property name="whatsThis">
+     <string extracomment="Day to day tab">Day to day tab</string>
     </property>
     <property name="currentIndex">
      <number>0</number>
@@ -1953,6 +1971,9 @@ color: rgb(255, 255, 255);</string>
       <width>71</width>
       <height>71</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string>User Tab</string>
     </property>
     <property name="text">
      <string/>
