@@ -29,6 +29,9 @@ class MainApp(QMainWindow , ui):
         self.show_category()
         self.show_publisher()
 
+        self.show_category_combobox()
+        self.show_author_combobox()
+        self.show_publisher_combobox()
 
     def handel_ui_changes(self):
         self.hidding_themes()
@@ -49,7 +52,6 @@ class MainApp(QMainWindow , ui):
         self.pushButton_14.clicked.connect(self.add_category)
         self.pushButton_15.clicked.connect(self.add_author)
         self.pushButton_16.clicked.connect(self.add_publisher)
-
 
     def show_themes(self):
         self.groupBox_3.show()
@@ -132,7 +134,7 @@ class MainApp(QMainWindow , ui):
 
         self.cur.execute("""SELECT category_name FROM category""")
         data= self.cur.fetchall()
-        print(data)
+        # print(data)
 
         if data:
             self.tableWidget_2.setRowCount(0)
@@ -206,6 +208,43 @@ class MainApp(QMainWindow , ui):
 
                 row_position = self.tableWidget_4.rowCount()
                 self.tableWidget_4.insertRow(row_position)
+
+    # #################################################################################################################
+    # ##############################  show settings data in UI ########################################################
+
+    def show_category_combobox(self):
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        self.cur.execute("""SELECT category_name FROM category""")
+        data = self.cur.fetchall()
+        # print(data)
+
+        for category in data:
+            # print(category[0])
+            self.comboBox_7.addItem(category[0])
+
+    def show_author_combobox(self):
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        self.cur.execute("""SELECT author_name FROM authors""")
+        data = self.cur.fetchall()
+
+        for author in data:
+            self.comboBox_8.addItem(author[0])
+
+
+    def show_publisher_combobox(self):
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        self.cur.execute("""SELECT publisher_name FROM publisher""")
+        data = self.cur.fetchall()
+
+        for publisher in data:
+            self.comboBox_6.addItem(publisher[0])
+
 
 
 def main():
