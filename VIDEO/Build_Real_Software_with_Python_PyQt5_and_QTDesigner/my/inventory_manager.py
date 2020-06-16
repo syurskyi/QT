@@ -32,6 +32,7 @@ class Main(QMainWindow, FORM_CLASS):
         self.update_btn.clicked.connect(self.update)
         self.delete_btn.clicked.connect(self.delete)
         self.add_btn.clicked.connect(self.add)
+        self.last_btn.clicked.connect(self.last)
 
 
     def get_data(self):
@@ -196,6 +197,31 @@ class Main(QMainWindow, FORM_CLASS):
         cursor.execute(command, row)
 
         db.commit()
+
+    def last(self):
+
+        db = sqlite3.connect("parts.db")
+        cursor = db.cursor()
+
+        command = ''' SELECT * from  parts_table'''
+
+        result = cursor.execute(command)
+        '''
+        val=result.fetchone()
+        print (result.rowcount)
+        '''
+        for row in result:
+            sleep(2)
+            # val=result.fetchone()
+            self.id.setText(str(row[0]))
+            self.reference.setText(str(row[1]))
+            self.part_name.setText(str(row[2]))
+            self.min_area.setText(str(row[3]))
+            self.max_area.setText(str(row[4]))
+            self.number_of_holes.setText(str(row[5]))
+            self.min_diameter.setText(str(row[6]))
+            self.max_diameter.setText(str(row[7]))
+            self.count.setValue(row[8])
 
 
 
