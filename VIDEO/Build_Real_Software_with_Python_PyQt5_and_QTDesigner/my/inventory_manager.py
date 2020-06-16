@@ -23,10 +23,13 @@ class Main(QMainWindow, FORM_CLASS):
         QMainWindow.__init__(self)
         self.setupUi(self)
         self.handle_buttons()
+        self.navigate()
 
     def handle_buttons(self):
         self.refresh_btn.clicked.connect(self.get_data)
         self.search_btn.clicked.connect(self.search)
+        self.check_btn.clicked.connect(self.level)
+
 
     def get_data(self):
         # Connect to Sqlite3 database add fill GUI table with
@@ -78,8 +81,7 @@ class Main(QMainWindow, FORM_CLASS):
         self.lbl_max_hole.setText(str(r2[0]))
 
         self.lbl_min_hole_2.setText(str(r1[1]))
-        self.lbl_man_hole_2.setText(str(r2[1]))
-        
+        self.lbl_max_hole_2.setText(str(r2[1]))
 
     def search(self):
 
@@ -98,6 +100,41 @@ class Main(QMainWindow, FORM_CLASS):
             for column_number, data in enumerate(row_data):
                 self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
 
+    def level(self):
+
+        db = sqlite3.connect("parts.db")
+        cursor = db.cursor()
+
+        command = """SELECT Reference, PartName, Count from parts_table ORDER BY Count ASC LIMIT 3"""
+
+        result = cursor.execute(command)
+
+        self.table2.setRowCount(0)
+
+        for row_number, row_data in enumerate(result):
+            self.table2.insertRow(row_number)
+            for column_number, data in enumerate(row_data):
+                self.table2.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+
+    def navigate(self):
+
+        db = sqlite3.connect("parts.db")
+        cursor = db.cursor()
+
+        command = """SELECT * FROM parts_table """
+
+        result = cursor.execute(command)
+        val = result.fetchone()
+
+        self.id.setText(str(val[0]))
+        self.reference.setText(str(val[1]))
+        self.part_name.setText(str(val[2]))
+        self.min_area.setText(str(val[3]))
+        self.max_area.setText(str(val[4]))
+        self.number_of_holes.setText(str(val[5]))
+        self.min_diameter.setText(str(val[6]))
+        self.max_diameter.setText(str(val[7]))
+        self.count.setValue(val[8])
 
 def main():
     app = QApplication(sys.argv)

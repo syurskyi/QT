@@ -327,7 +327,7 @@ color: rgb(100, 100, 255);</string>
        </rect>
       </property>
       <property name="text">
-       <string>Top 3 Reference with minimum iventory level</string>
+       <string>Top 3 Reference with minimum inventory level</string>
       </property>
      </widget>
      <widget class="QPushButton" name="check_btn">
