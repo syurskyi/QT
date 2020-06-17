@@ -12,6 +12,7 @@ ui,_ = loadUiType('library.ui')
 # ui = loadUiType('library.ui')[0]
 # ui,_ = loadUiType('library.ui')
 
+
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
@@ -105,7 +106,13 @@ class MainApp(QMainWindow , ui):
         self.db = sqlite3.connect(resource_path("db.db"))
         self.cur = self.db.cursor()
 
-        self.cur.execute(''' SELECT book_code,book_name,book_description,book_category,book_author,book_publisher,book_price FROM book''')
+        self.cur.execute("""SELECT book_code, 
+                                   book_name, 
+                                   book_description,
+                                   book_category, 
+                                   book_author,
+                                   book_publisher, 
+                                   book_price FROM book""")
         data = self.cur.fetchall()
 
         self.tableWidget_5.setRowCount(0)
@@ -134,10 +141,16 @@ class MainApp(QMainWindow , ui):
         book_publisher = self.comboBox_5.currentText()
         book_price = self.lineEdit_4.text()
 
-        self.cur.execute("""
-        INSERT INTO book(book_name, book_description, book_code, book_category, book_author, book_publisher, book_price)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-        """, (book_title, book_description, book_code, book_category, book_author, book_publisher ,book_price))
+        self.cur.execute("""INSERT INTO book(
+                                             book_name, 
+                                             book_description, 
+                                             book_code, 
+                                             book_category, 
+                                             book_author, 
+                                             book_publisher, 
+                                             book_price)
+                                             VALUES (?, ?, ?, ?, ?, ?, ?)""",
+                         (book_title, book_description, book_code, book_category, book_author, book_publisher ,book_price))
 
         self.db.commit()
         self.statusBar().showMessage("New Book has been added")
@@ -187,9 +200,23 @@ class MainApp(QMainWindow , ui):
 
         search_book_title = self.lineEdit_5.text()
 
-        self.cur.execute('''
-                    UPDATE book SET book_name=? ,book_description=? ,book_code=? ,book_category=? ,book_author=? ,book_publisher=? ,book_price=? WHERE book_name = ?          
-                ''', (book_title, book_description, book_code, book_category, book_author, book_publisher, book_price, search_book_title))
+        self.cur.execute("""UPDATE book SET 
+                            book_name=?,
+                            book_description=?,
+                            book_code=?,
+                            book_category=?,
+                            book_author=?,
+                            book_publisher=?,
+                            book_price=? 
+                            WHERE book_name = ? """,
+                    (book_title,
+                     book_description,
+                     book_code,
+                     book_category,
+                     book_author,
+                     book_publisher,
+                     book_price,
+                     search_book_title))
 
         self.db.commit()
         self.statusBar().showMessage('book updated')
@@ -205,7 +232,7 @@ class MainApp(QMainWindow , ui):
         warning = QMessageBox.warning(self, 'Delete Book', "are you sure you want to delete this book",
                                       QMessageBox.Yes | QMessageBox.No)
         if warning == QMessageBox.Yes:
-            sql = ''' DELETE FROM book WHERE book_name = ? '''
+            sql = """DELETE FROM book WHERE book_name = ?"""
             self.cur.execute(sql, [(book_title)])
             self.db.commit()
             self.statusBar().showMessage('Book Deleted')
@@ -275,9 +302,15 @@ class MainApp(QMainWindow , ui):
         self.db = sqlite3.connect(resource_path("db.db"))
         self.cur = self.db.cursor()
 
-        self.cur.execute("""UPDATE clients SET client_name = ?, client_email = ?, client_nationalid = ?
+        self.cur.execute("""UPDATE clients SET 
+                            client_name = ?, 
+                            client_email = ?, 
+                            client_nationalid = ?
                             WHERE client_nationalid = ?""",
-                         (client_name, client_email, client_national_id, client_original_national_id))
+                         (client_name,
+                          client_email,
+                          client_national_id,
+                          client_original_national_id))
         self.db.commit()
         self.db.close()
         self.statusBar().showMessage('Client Data Has Been Updated ')
@@ -314,9 +347,8 @@ class MainApp(QMainWindow , ui):
         password2 = self.lineEdit_12.text()
 
         if password == password2:
-            self.cur.execute("""
-            INSERT INTO users(user_name, user_email, user_password)
-            VALUES (?, ?, ?)""", (username, email, password))
+            self.cur.execute("""INSERT INTO users(user_name, user_email, user_password) VALUES (?, ?, ?)""",
+                             (username, email, password))
 
             self.db.commit()
             self.statusBar().showMessage("New User has been Added")
@@ -361,7 +393,12 @@ class MainApp(QMainWindow , ui):
             print(email)
             print(password)
 
-            self.cur.execute("""UPDATE users SET user_name=?, user_email=?, user_password=? WHERE user_name=?""", (username, email, password, original_name))
+            self.cur.execute("""UPDATE users SET 
+                                user_name=?, 
+                                user_email=?, 
+                                user_password=? 
+                                WHERE user_name=?""",
+                             (username, email, password, original_name))
 
             self.db.commit()
             self.statusBar().showMessage('User Data Has Been Updated Successfully')
@@ -533,8 +570,6 @@ class MainApp(QMainWindow , ui):
         style = open(resource_path('themes/qdark.css'), 'r')
         style = style.read()
         self.setStyleSheet(style)
-
-
 
 def main():
     app = QApplication(sys.argv)
