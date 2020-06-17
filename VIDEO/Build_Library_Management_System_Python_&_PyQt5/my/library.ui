@@ -166,7 +166,7 @@
      <string extracomment="Day to day tab">Day to day tab</string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">

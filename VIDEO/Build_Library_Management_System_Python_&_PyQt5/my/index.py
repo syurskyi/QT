@@ -24,6 +24,7 @@ class MainApp(QMainWindow , ui):
         self.setupUi(self)
         self.handel_ui_changes()
         self.handle_buttons()
+        self.dark_orange_theme()
 
         self.show_author()
         self.show_category()
@@ -62,6 +63,10 @@ class MainApp(QMainWindow , ui):
         self.pushButton_12.clicked.connect(self.login)
         self.pushButton_13.clicked.connect(self.edit_user)
 
+        self.pushButton_19.clicked.connect(self.dark_orange_theme)
+        self.pushButton_18.clicked.connect(self.dark_blue_theme)
+        self.pushButton_21.clicked.connect(self.dark_gray_theme)
+        self.pushButton_20.clicked.connect(self.qdark_theme)
 
     def show_themes(self):
         self.groupBox_3.show()
@@ -411,6 +416,29 @@ class MainApp(QMainWindow , ui):
 
         for publisher in data:
             self.comboBox_5.addItem(publisher[0])
+
+    # #################################################################################################################
+    # ############################## UI Themes ########################################################################
+
+    def dark_blue_theme(self):
+        style = open(resource_path('themes/darkblue.css'), 'r')
+        style = style.read()
+        self.setStyleSheet(style)
+
+    def dark_gray_theme(self):
+        style = open(resource_path('themes/darkgray.css'), 'r')
+        style = style.read()
+        self.setStyleSheet(style)
+
+    def dark_orange_theme(self):
+        style = open(resource_path('themes/darkorange.css'), 'r')
+        style = style.read()
+        self.setStyleSheet(style)
+
+    def qdark_theme(self):
+        style = open(resource_path('themes/qdark.css'), 'r')
+        style = style.read()
+        self.setStyleSheet(style)
 
 
 
