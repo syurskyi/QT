@@ -5,6 +5,7 @@ from PyQt5.uic import loadUiType
 import sys
 import os
 import sqlite3
+import datetime
 
 # ui = loadUiType('library.ui')[0]
 ui,_ = loadUiType('library.ui')
@@ -37,6 +38,8 @@ class MainApp(QMainWindow , ui):
 
         self.show_all_clients()
         self.show_all_books()
+
+        self.show_all_operations()
 
     def handel_ui_changes(self):
         self.hidding_themes()
@@ -75,6 +78,8 @@ class MainApp(QMainWindow , ui):
         self.pushButton_23.clicked.connect(self.edit_client)
         self.pushButton_25.clicked.connect(self.delete_client)
 
+        self.pushButton_6.clicked.connect(self.handel_day_operations)
+
     def show_themes(self):
         self.groupBox_3.show()
 
@@ -98,6 +103,63 @@ class MainApp(QMainWindow , ui):
 
     def open_settings_tab(self):
         self.tabWidget.setCurrentIndex(4)
+
+    # #################################################################################################################
+    # ############################## Day Operations ###################################################################
+
+    def handel_day_operations(self):
+        book_title = self.lineEdit.text()
+        client_name = self.lineEdit_29.text()
+        type = self.comboBox.currentText()
+        days_number = self.comboBox_2.currentIndex() + 1
+        today_date = datetime.date.today()
+        to_date = today_date + datetime.timedelta(days=days_number)
+
+        print(today_date)
+        print(to_date)
+
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        self.cur.execute("""INSERT INTO dayoperations
+                            (book_name,
+                            client, 
+                            type,
+                            days, 
+                            date, 
+                            to_date )
+                            VALUES (?, ?, ?, ?, ?, ?)""",
+                         (book_title,
+                          client_name,
+                          type,
+                          days_number,
+                          today_date,
+                          to_date))
+
+        self.db.commit()
+        self.statusBar().showMessage('New Operation Added')
+
+        self.show_all_operations()
+
+    def show_all_operations(self):
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        self.cur.execute("""SELECT book_name , client , type , date , to_date FROM dayoperations""")
+
+        data = self.cur.fetchall()
+
+        print(data)
+
+        self.tableWidget.setRowCount(0)
+        self.tableWidget.insertRow(0)
+        for row , form in enumerate(data):
+            for column , item in enumerate(form):
+                self.tableWidget.setItem(row , column , QTableWidgetItem(str(item)))
+                column += 1
+
+            row_position = self.tableWidget.rowCount()
+            self.tableWidget.insertRow(row_position)
 
     # #################################################################################################################
     # ############################## Books ############################################################################
