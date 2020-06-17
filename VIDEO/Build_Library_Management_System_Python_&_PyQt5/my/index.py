@@ -11,13 +11,44 @@ import datetime
 ui,_ = loadUiType('library.ui')
 
 # ui = loadUiType('library.ui')[0]
-# ui,_ = loadUiType('library.ui')
+login_ui,_ = loadUiType('login.ui')
 
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base_path, relative_path)
+
+
+class Login(QWidget , login_ui):
+    def __init__(self):
+        QWidget.__init__(self)
+        self.setupUi(self)
+        self.pushButton.clicked.connect(self.handel_login)
+        style = open(resource_path('themes/darkorange.css') , 'r')
+        style = style.read()
+        self.setStyleSheet(style)
+
+    def handel_login(self):
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        username = self.lineEdit.text()
+        password = self.lineEdit_2.text()
+
+        sql = """SELECT * FROM users"""
+
+        self.cur.execute(sql)
+        data = self.cur.fetchall()
+        for row in data  :
+            if username == row[1] and password == row[3]:
+                print('user match')
+                self.window2 = MainApp()
+                self.close()
+                self.window2.show()
+
+            else:
+                self.label.setText('Make Sure You Enterd Your Username And Password Correctly')
 
 
 class MainApp(QMainWindow , ui):
@@ -635,7 +666,7 @@ class MainApp(QMainWindow , ui):
 
 def main():
     app = QApplication(sys.argv)
-    window =MainApp()
+    window = Login()
     window.show()
     app.exec_()
 
