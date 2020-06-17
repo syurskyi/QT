@@ -33,6 +33,8 @@ class MainApp(QMainWindow , ui):
         self.show_author_combobox()
         self.show_publisher_combobox()
 
+        self.show_all_books()
+
     def handel_ui_changes(self):
         self.hidding_themes()
         self.tabWidget.tabBar().setVisible(False)
@@ -53,11 +55,17 @@ class MainApp(QMainWindow , ui):
         self.pushButton_15.clicked.connect(self.add_author)
         self.pushButton_16.clicked.connect(self.add_publisher)
 
+        self.pushButton_7.clicked.connect(self.add_new_book)
+        self.pushButton_9.clicked.connect(self.search_books)
+        self.pushButton_8.clicked.connect(self.edit_books)
+        self.pushButton_10.clicked.connect(self.delete_books)
+
     def show_themes(self):
         self.groupBox_3.show()
 
     def hidding_themes(self):
         self.groupBox_3.hide()
+
     # #################################################################################################################
     # ############################## openning tabs ####################################################################
 
@@ -79,12 +87,33 @@ class MainApp(QMainWindow , ui):
     # #################################################################################################################
     # ############################## Books ############################################################################
 
+    def show_all_books(self):
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        self.cur.execute(''' SELECT book_code,book_name,book_description,book_category,book_author,book_publisher,book_price FROM book''')
+        data = self.cur.fetchall()
+
+        self.tableWidget_5.setRowCount(0)
+        self.tableWidget_5.insertRow(0)
+
+        for row, form in enumerate(data):
+            for column, item in enumerate(form):
+                self.tableWidget_5.setItem(row, column, QTableWidgetItem(str(item)))
+                column += 1
+
+            row_position = self.tableWidget_5.rowCount()
+            self.tableWidget_5.insertRow(row_position)
+
+        self.db.close
+
     def add_new_book(self):
+
         self.db = sqlite3.connect(resource_path("db.db"))
         self.cur = self.db.cursor()
 
         book_title = self.lineEdit_2.text()
-        book_description = self.textEdit.toPlainText
+        book_description = self.textEdit.toPlainText()
         book_code = self.lineEdit_3.text()
         book_category = self.comboBox_3.currentText()
         book_author = self.comboBox_4.currentText()
@@ -94,7 +123,7 @@ class MainApp(QMainWindow , ui):
         self.cur.execute("""
         INSERT INTO book(book_name, book_description, book_code, book_category, book_author, book_publisher, book_price)
         VALUES (?, ?, ?, ?, ?, ?, ?)
-        """, (str(book_title), str(book_description), int(book_code), str(book_category), str(book_author), str(book_publisher), int(book_price)))
+        """, (book_title, book_description, book_code, book_category, book_author, book_publisher ,book_price))
 
         self.db.commit()
         self.statusBar().showMessage("New Book has been added")
@@ -106,16 +135,69 @@ class MainApp(QMainWindow , ui):
         self.comboBox_4.setCurrentIndex(0)
         self.comboBox_5.setCurrentIndex(0)
         self.lineEdit_4.setText('')
-
+        self.show_all_books()
 
     def search_books(self):
-        pass
 
-    def edit_book(self):
-        pass
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        book_title = self.lineEdit_5.text()
+
+        sql = """SELECT * FROM book WHERE book_name = ?"""
+        self.cur.execute(sql, [(book_title)])
+
+        data = self.cur.fetchone()
+
+        print(data)
+        self.lineEdit_8.setText(data[1])
+        self.textEdit_2.setPlainText(data[2])
+        self.lineEdit_7.setText(data[3])
+        self.comboBox_7.setCurrentText(data[4])
+        self.comboBox_8.setCurrentText(data[5])
+        self.comboBox_6.setCurrentText(data[6])
+        self.lineEdit_6.setText(str(data[7]))
+
+    def edit_books(self):
+
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        book_title = self.lineEdit_8.text()
+        book_description = self.textEdit_2.toPlainText()
+        book_code = self.lineEdit_7.text()
+        book_category = self.comboBox_7.currentText()
+        book_author = self.comboBox_8.currentText()
+        book_publisher = self.comboBox_6.currentText()
+        book_price = self.lineEdit_6.text()
+
+        search_book_title = self.lineEdit_5.text()
+
+        self.cur.execute('''
+                    UPDATE book SET book_name=%s ,book_description=%s ,book_code=%s ,book_category=%s ,book_author=%s ,book_publisher=%s ,book_price=%s WHERE book_name = %s            
+                ''', (book_title, book_description, book_code, book_category, book_author, book_publisher, book_price,
+                      search_book_title))
+
+        self.db.commit()
+        self.statusBar().showMessage('book updated')
+        self.show_all_books()
 
     def delete_books(self):
-        pass
+
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        book_title = self.lineEdit_5.text()
+
+        warning = QMessageBox.warning(self, 'Delete Book', "are you sure you want to delete this book",
+                                      QMessageBox.Yes | QMessageBox.No)
+        if warning == QMessageBox.Yes:
+            sql = ''' DELETE FROM book WHERE book_name = %s '''
+            self.cur.execute(sql, [(book_title)])
+            self.db.commit()
+            self.statusBar().showMessage('Book Deleted')
+
+            self.show_all_books
 
     # #################################################################################################################
     # ############################## Users ############################################################################
