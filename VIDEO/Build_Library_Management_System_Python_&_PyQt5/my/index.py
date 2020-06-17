@@ -80,7 +80,7 @@ class MainApp(QMainWindow , ui):
 
     def handle_buttons(self):
         self.pushButton_5.clicked.connect(self.show_themes)
-        self.pushButton_17.clicked.connect(self.hidding_themes)
+        self.pushButton_49.clicked.connect(self.hidding_themes)
 
         self.pushButton.clicked.connect(self.open_day_to_day_tab)
         self.pushButton_2.clicked.connect(self.open_books_tab)
@@ -101,10 +101,10 @@ class MainApp(QMainWindow , ui):
         self.pushButton_12.clicked.connect(self.login)
         self.pushButton_13.clicked.connect(self.edit_user)
 
-        self.pushButton_19.clicked.connect(self.dark_orange_theme)
-        self.pushButton_18.clicked.connect(self.dark_blue_theme)
-        self.pushButton_21.clicked.connect(self.dark_gray_theme)
-        self.pushButton_20.clicked.connect(self.qdark_theme)
+        self.pushButton_46.clicked.connect(self.dark_orange_theme)
+        self.pushButton_45.clicked.connect(self.dark_blue_theme)
+        self.pushButton_48.clicked.connect(self.dark_gray_theme)
+        self.pushButton_47.clicked.connect(self.qdark_theme)
         
         self.pushButton_22.clicked.connect(self.add_new_client)
         self.pushButton_24.clicked.connect(self.search_client)

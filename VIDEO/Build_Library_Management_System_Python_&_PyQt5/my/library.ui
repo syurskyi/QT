@@ -152,7 +152,7 @@
      <rect>
       <x>140</x>
       <y>0</y>
-      <width>1031</width>
+      <width>1041</width>
       <height>551</height>
      </rect>
     </property>
@@ -365,125 +365,6 @@
        <string>Export Today Operations To Excel File</string>
       </property>
      </widget>
-     <widget class="QGroupBox" name="groupBox_3">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>660</x>
-        <y>-50</y>
-        <width>381</width>
-        <height>581</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="title">
-       <string/>
-      </property>
-      <widget class="QLabel" name="label_29">
-       <property name="geometry">
-        <rect>
-         <x>80</x>
-         <y>90</y>
-         <width>271</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Segoe UI</family>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Apply New Theme ^_^</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_18">
-       <property name="geometry">
-        <rect>
-         <x>200</x>
-         <y>190</y>
-         <width>131</width>
-         <height>121</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(48, 47, 47);
-color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="text">
-        <string>Dark Blue</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_19">
-       <property name="geometry">
-        <rect>
-         <x>60</x>
-         <y>190</y>
-         <width>131</width>
-         <height>121</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(50, 50, 50);
-color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="text">
-        <string>Dark Orange</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_20">
-       <property name="geometry">
-        <rect>
-         <x>200</x>
-         <y>320</y>
-         <width>131</width>
-         <height>121</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(25, 35, 45);
-color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="text">
-        <string>QDark</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_21">
-       <property name="geometry">
-        <rect>
-         <x>60</x>
-         <y>320</y>
-         <width>131</width>
-         <height>121</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(50, 50, 50);
-color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="text">
-        <string>Dark Gray</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_17">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>250</y>
-         <width>21</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>&gt;</string>
-       </property>
-      </widget>
-     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -499,7 +380,7 @@ color: rgb(255, 255, 255);</string>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_10">
        <attribute name="title">
@@ -1789,7 +1670,7 @@ color: rgb(255, 255, 255);</string>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_7">
        <attribute name="title">
@@ -2041,6 +1922,125 @@ color: rgb(255, 255, 255);</string>
       <height>40</height>
      </size>
     </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>20</y>
+      <width>381</width>
+      <height>581</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QLabel" name="label_40">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>90</y>
+       <width>271</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Apply New Theme ^_^</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_45">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>190</y>
+       <width>131</width>
+       <height>121</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(48, 47, 47);
+color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>Dark Blue</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_46">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>190</y>
+       <width>131</width>
+       <height>121</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(50, 50, 50);
+color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>Dark Orange</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_47">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>320</y>
+       <width>131</width>
+       <height>121</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(25, 35, 45);
+color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>QDark</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_48">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>320</y>
+       <width>131</width>
+       <height>121</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(50, 50, 50);
+color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>Dark Gray</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_49">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>250</y>
+       <width>21</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&gt;</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
