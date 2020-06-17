@@ -50,15 +50,18 @@ class MainApp(QMainWindow , ui):
         self.pushButton_4.clicked.connect(self.open_settings_tab)
 
         self.pushButton_7.clicked.connect(self.add_new_book)
+        self.pushButton_9.clicked.connect(self.search_books)
+        self.pushButton_8.clicked.connect(self.edit_books)
+        self.pushButton_10.clicked.connect(self.delete_books)
 
         self.pushButton_14.clicked.connect(self.add_category)
         self.pushButton_15.clicked.connect(self.add_author)
         self.pushButton_16.clicked.connect(self.add_publisher)
 
-        self.pushButton_7.clicked.connect(self.add_new_book)
-        self.pushButton_9.clicked.connect(self.search_books)
-        self.pushButton_8.clicked.connect(self.edit_books)
-        self.pushButton_10.clicked.connect(self.delete_books)
+        self.pushButton_11.clicked.connect(self.add_new_user)
+        self.pushButton_12.clicked.connect(self.login)
+        self.pushButton_13.clicked.connect(self.edit_user)
+
 
     def show_themes(self):
         self.groupBox_3.show()
@@ -202,13 +205,70 @@ class MainApp(QMainWindow , ui):
     # ############################## Users ############################################################################
 
     def add_new_user(self):
-        pass
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        username = self.lineEdit_9.text()
+        email = self.lineEdit_10.text()
+        password = self.lineEdit_11.text()
+        password2 = self.lineEdit_12.text()
+
+        if password == password2:
+            self.cur.execute("""
+            INSERT INTO users(user_name, user_email, user_password)
+            VALUES (?, ?, ?)""", (username, email, password))
+
+            self.db.commit()
+            self.statusBar().showMessage("New User has been Added")
+        else:
+            self.label_30.setText("Please Add a Valid Password Twice")
 
     def login(self):
-        pass
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        username = self.lineEdit_14.text()
+        password = self.lineEdit_13.text()
+
+        sql = """SELECT * FROM users"""
+
+        self.cur.execute(sql)
+        data = self.cur.fetchall()
+        for row in data:
+            if username == row[1] and password == row[3]:
+                print('User Match')
+                self.statusBar().showMessage('Valid Username & Password')
+                self.groupBox_4.setEnabled(True)
+
+                self.lineEdit_17.setText(row[1])
+                self.lineEdit_15.setText(row[2])
+                self.lineEdit_16.setText(row[3])
+
 
     def edit_user(self):
-        pass
+
+        username = self.lineEdit_17.text()
+        email = self.lineEdit_15.text()
+        password = self.lineEdit_16.text()
+        password2 = self.lineEdit_18.text()
+
+        original_name = self.lineEdit_14.text()
+
+        if password == password2:
+            self.db = sqlite3.connect(resource_path("db.db"))
+            self.cur = self.db.cursor()
+
+            print(username)
+            print(email)
+            print(password)
+
+            self.cur.execute("""UPDATE users SET user_name=?, user_email=?, user_password=? WHERE user_name=?""", (username, email, password, original_name))
+
+            self.db.commit()
+            self.statusBar().showMessage('User Data Has Been Updated Successfully')
+
+        else:
+            print('Make Sure You Entered Your Password Correctly')
 
     # #################################################################################################################
     # ############################## Settings #########################################################################

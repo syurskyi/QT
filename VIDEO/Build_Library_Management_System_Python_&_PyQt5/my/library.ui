@@ -81,6 +81,9 @@
       <height>71</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string>Users Tab</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -163,7 +166,7 @@
      <string extracomment="Day to day tab">Day to day tab</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1699,7 +1702,7 @@ color: rgb(255, 255, 255);</string>
         <rect>
          <x>30</x>
          <y>190</y>
-         <width>101</width>
+         <width>121</width>
          <height>21</height>
         </rect>
        </property>
@@ -1736,7 +1739,7 @@ color: rgb(255, 255, 255);</string>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_7">
        <attribute name="title">
@@ -1973,7 +1976,7 @@ color: rgb(255, 255, 255);</string>
      </rect>
     </property>
     <property name="toolTip">
-     <string>User Tab</string>
+     <string>Clients Tab</string>
     </property>
     <property name="text">
      <string/>
