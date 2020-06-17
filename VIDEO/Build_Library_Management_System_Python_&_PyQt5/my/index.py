@@ -91,6 +91,23 @@ class MainApp(QMainWindow , ui):
         book_publisher = self.comboBox_5.currentText()
         book_price = self.lineEdit_4.text()
 
+        self.cur.execute("""
+        INSERT INTO book(book_name, book_description, book_code, book_category, book_author, book_publisher, book_price)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, (str(book_title), str(book_description), int(book_code), str(book_category), str(book_author), str(book_publisher), int(book_price)))
+
+        self.db.commit()
+        self.statusBar().showMessage("New Book has been added")
+
+        self.lineEdit_2.setText('')
+        self.textEdit.setPlainText('')
+        self.lineEdit_3.setText('')
+        self.comboBox_3.setCurrentIndex(0)
+        self.comboBox_4.setCurrentIndex(0)
+        self.comboBox_5.setCurrentIndex(0)
+        self.lineEdit_4.setText('')
+
+
     def search_books(self):
         pass
 
@@ -127,6 +144,7 @@ class MainApp(QMainWindow , ui):
         self.statusBar().showMessage("New Category Added")
         self.lineEdit_19.setText('')
         self.show_category()
+        self.show_category_combobox()
 
     def show_category(self):
         self.db = sqlite3.connect(resource_path("db.db"))
@@ -159,6 +177,7 @@ class MainApp(QMainWindow , ui):
         self.lineEdit_20.setText('')
         self.statusBar().showMessage("New Author Added")
         self.show_author()
+        self.show_author_combobox()
 
     def show_author(self):
         self.db = sqlite3.connect(resource_path("db.db"))
@@ -190,6 +209,7 @@ class MainApp(QMainWindow , ui):
         self.lineEdit_21.setText('')
         self.statusBar().showMessage("New Publisher Added")
         self.show_publisher()
+        self.show_publisher_combobox()
 
     def show_publisher(self):
         self.db = sqlite3.connect(resource_path("db.db"))
@@ -220,9 +240,11 @@ class MainApp(QMainWindow , ui):
         data = self.cur.fetchall()
         # print(data)
 
+        self.comboBox_3.clear()
+
         for category in data:
             # print(category[0])
-            self.comboBox_7.addItem(category[0])
+            self.comboBox_3.addItem(category[0])
 
     def show_author_combobox(self):
         self.db = sqlite3.connect(resource_path("db.db"))
@@ -231,8 +253,10 @@ class MainApp(QMainWindow , ui):
         self.cur.execute("""SELECT author_name FROM authors""")
         data = self.cur.fetchall()
 
+        self.comboBox_4.clear()
+
         for author in data:
-            self.comboBox_8.addItem(author[0])
+            self.comboBox_4.addItem(author[0])
 
 
     def show_publisher_combobox(self):
@@ -242,8 +266,10 @@ class MainApp(QMainWindow , ui):
         self.cur.execute("""SELECT publisher_name FROM publisher""")
         data = self.cur.fetchall()
 
+        self.comboBox_5.clear()
+
         for publisher in data:
-            self.comboBox_6.addItem(publisher[0])
+            self.comboBox_5.addItem(publisher[0])
 
 
 
