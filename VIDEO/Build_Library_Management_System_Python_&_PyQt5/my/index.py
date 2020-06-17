@@ -174,9 +174,8 @@ class MainApp(QMainWindow , ui):
         search_book_title = self.lineEdit_5.text()
 
         self.cur.execute('''
-                    UPDATE book SET book_name=%s ,book_description=%s ,book_code=%s ,book_category=%s ,book_author=%s ,book_publisher=%s ,book_price=%s WHERE book_name = %s            
-                ''', (book_title, book_description, book_code, book_category, book_author, book_publisher, book_price,
-                      search_book_title))
+                    UPDATE book SET book_name=? ,book_description=? ,book_code=? ,book_category=? ,book_author=? ,book_publisher=? ,book_price=? WHERE book_name = ?          
+                ''', (book_title, book_description, book_code, book_category, book_author, book_publisher, book_price, search_book_title))
 
         self.db.commit()
         self.statusBar().showMessage('book updated')
@@ -192,7 +191,7 @@ class MainApp(QMainWindow , ui):
         warning = QMessageBox.warning(self, 'Delete Book', "are you sure you want to delete this book",
                                       QMessageBox.Yes | QMessageBox.No)
         if warning == QMessageBox.Yes:
-            sql = ''' DELETE FROM book WHERE book_name = %s '''
+            sql = ''' DELETE FROM book WHERE book_name = ? '''
             self.cur.execute(sql, [(book_title)])
             self.db.commit()
             self.statusBar().showMessage('Book Deleted')
