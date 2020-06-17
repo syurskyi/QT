@@ -166,7 +166,7 @@
      <string extracomment="Day to day tab">Day to day tab</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1051,7 +1051,7 @@ color: rgb(255, 255, 255);</string>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_12">
        <attribute name="title">
@@ -1132,9 +1132,9 @@ color: rgb(255, 255, 255);</string>
        <widget class="QLabel" name="label_31">
         <property name="geometry">
          <rect>
-          <x>140</x>
+          <x>150</x>
           <y>60</y>
-          <width>121</width>
+          <width>181</width>
           <height>31</height>
          </rect>
         </property>
@@ -1161,9 +1161,9 @@ color: rgb(255, 255, 255);</string>
        <widget class="QLabel" name="label_32">
         <property name="geometry">
          <rect>
-          <x>140</x>
+          <x>150</x>
           <y>130</y>
-          <width>121</width>
+          <width>171</width>
           <height>31</height>
          </rect>
         </property>
@@ -1190,9 +1190,9 @@ color: rgb(255, 255, 255);</string>
        <widget class="QLabel" name="label_33">
         <property name="geometry">
          <rect>
-          <x>130</x>
+          <x>80</x>
           <y>200</y>
-          <width>161</width>
+          <width>231</width>
           <height>31</height>
          </rect>
         </property>

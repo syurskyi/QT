@@ -67,6 +67,8 @@ class MainApp(QMainWindow , ui):
         self.pushButton_18.clicked.connect(self.dark_blue_theme)
         self.pushButton_21.clicked.connect(self.dark_gray_theme)
         self.pushButton_20.clicked.connect(self.qdark_theme)
+        
+        self.pushButton_22.clicked.connect(self.add_new_client)
 
     def show_themes(self):
         self.groupBox_3.show()
@@ -205,6 +207,36 @@ class MainApp(QMainWindow , ui):
             self.statusBar().showMessage('Book Deleted')
 
             self.show_all_books
+
+    # #################################################################################################################
+    # ############################## Clients ##########################################################################
+
+    def add_new_client(self):
+        client_name = self.lineEdit_22.text()
+        client_email = self.lineEdit_23.text()
+        client_nationalid = self.lineEdit_24.text()
+
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        self.cur.execute("""INSERT INTO clients(client_name, client_email, client_nationalid) VALUES(?, ?, ?)""",
+                         (client_name, client_email, client_nationalid))
+        self.db.commit()
+        self.db.close()
+        self.statusBar().showMessage('New Client Has Been Added')
+        self.show_all_clients()
+
+    def show_all_clients(self):
+        pass
+
+    def search_client(self):
+        pass
+
+    def edit_client(self):
+        pass
+
+    def delete_client(self):
+        pass
 
     # #################################################################################################################
     # ############################## Users ############################################################################
