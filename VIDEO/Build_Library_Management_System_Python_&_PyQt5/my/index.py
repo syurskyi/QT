@@ -34,6 +34,7 @@ class MainApp(QMainWindow , ui):
         self.show_author_combobox()
         self.show_publisher_combobox()
 
+        self.show_all_clients()
         self.show_all_books()
 
     def handel_ui_changes(self):
@@ -69,6 +70,9 @@ class MainApp(QMainWindow , ui):
         self.pushButton_20.clicked.connect(self.qdark_theme)
         
         self.pushButton_22.clicked.connect(self.add_new_client)
+        self.pushButton_24.clicked.connect(self.search_client)
+        self.pushButton_23.clicked.connect(self.edit_client)
+        self.pushButton_25.clicked.connect(self.delete_client)
 
     def show_themes(self):
         self.groupBox_3.show()
@@ -211,6 +215,27 @@ class MainApp(QMainWindow , ui):
     # #################################################################################################################
     # ############################## Clients ##########################################################################
 
+    def show_all_clients(self):
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        self.cur.execute("""SELECT client_name , client_email ,client_nationalid FROM clients""")
+        data = self.cur.fetchall()
+
+        print(data)
+        self.tableWidget_6.setRowCount(0)
+        self.tableWidget_6.insertRow(0)
+
+        for row, form in enumerate(data):
+            for column, item in enumerate(form):
+                self.tableWidget_6.setItem(row, column, QTableWidgetItem(str(item)))
+                column += 1
+
+            row_position = self.tableWidget_6.rowCount()
+            self.tableWidget_6.insertRow(row_position)
+
+        self.db.close()
+
     def add_new_client(self):
         client_name = self.lineEdit_22.text()
         client_email = self.lineEdit_23.text()
@@ -226,17 +251,55 @@ class MainApp(QMainWindow , ui):
         self.statusBar().showMessage('New Client Has Been Added')
         self.show_all_clients()
 
-    def show_all_clients(self):
-        pass
-
     def search_client(self):
-        pass
+        client_national_id = self.lineEdit_25.text()
+
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        sql = """SELECT * FROM clients WHERE client_nationalid = ?"""
+        self.cur.execute(sql, [(client_national_id)])
+        data = self.cur.fetchone()
+        print(data)
+
+        self.lineEdit_28.setText(data[1])
+        self.lineEdit_27.setText(data[2])
+        self.lineEdit_26.setText(data[3])
 
     def edit_client(self):
-        pass
+        client_original_national_id = self.lineEdit_25.text()
+        client_name = self.lineEdit_28.text()
+        client_email = self.lineEdit_27.text()
+        client_national_id = self.lineEdit_26.text()
+
+        self.db = sqlite3.connect(resource_path("db.db"))
+        self.cur = self.db.cursor()
+
+        self.cur.execute("""UPDATE clients SET client_name = ?, client_email = ?, client_nationalid = ?
+                            WHERE client_nationalid = ?""",
+                         (client_name, client_email, client_national_id, client_original_national_id))
+        self.db.commit()
+        self.db.close()
+        self.statusBar().showMessage('Client Data Has Been Updated ')
+        self.show_all_clients()
 
     def delete_client(self):
-        pass
+        client_original_national_id = self.lineEdit_25.text()
+
+        warning_message = QMessageBox.warning(self, "Delete CLient", "are you sure you want to delete this client",
+                                              QMessageBox.Yes | QMessageBox.No)
+
+        if warning_message == QMessageBox.Yes:
+            self.db = sqlite3.connect(resource_path("db.db"))
+            self.cur = self.db.cursor()
+
+            sql = """DELETE FROM clients WHERE client_nationalid = ?"""
+            self.cur.execute(sql, [(client_original_national_id)])
+
+            self.db.commit()
+            self.db.close()
+            self.statusBar().showMessage('CLient Deleted ')
+            self.show_all_clients()
 
     # #################################################################################################################
     # ############################## Users ############################################################################
@@ -280,7 +343,6 @@ class MainApp(QMainWindow , ui):
                 self.lineEdit_17.setText(row[1])
                 self.lineEdit_15.setText(row[2])
                 self.lineEdit_16.setText(row[3])
-
 
     def edit_user(self):
 
