@@ -628,7 +628,6 @@ class MainApp(QMainWindow , ui):
         for author in data:
             self.comboBox_4.addItem(author[0])
 
-
     def show_publisher_combobox(self):
         self.db = sqlite3.connect(resource_path("db.db"))
         self.cur = self.db.cursor()
@@ -663,6 +662,7 @@ class MainApp(QMainWindow , ui):
         style = open(resource_path('themes/qdark.css'), 'r')
         style = style.read()
         self.setStyleSheet(style)
+
 
 def main():
     app = QApplication(sys.argv)
