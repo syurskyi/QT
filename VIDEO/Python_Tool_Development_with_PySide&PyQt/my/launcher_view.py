@@ -40,6 +40,7 @@ class LauncherGUI(QtWidgets.QWidget):
         v_layout = QtWidgets.QVBoxLayout(self)
 
         v_layout.addLayout(self._setup_header())
+        v_layout.addLayout(self._setup_edit_options())
         v_layout.addWidget(self._setup_apps())
 
         self._setup_connections()
@@ -58,10 +59,35 @@ class LauncherGUI(QtWidgets.QWidget):
 
         self._workspace_cb = QtWidgets.QComboBox()
 
+        self._edit_btn = QtWidgets.QPushButton('Edit')
+        self._edit_btn.setMaximumSize(QtCore.QSize(40, 23))
+
         v_layout.addWidget(self._workspace_cb)
         h_layout.addWidget(workspace_gb)
         h_layout.addStretch()
+        h_layout.addWidget(self._edit_btn)
         return h_layout
+
+    def _setup_edit_options(self):
+        add_del_l = QtWidgets.QHBoxLayout()
+
+        self._add_btn = QtWidgets.QPushButton('Add')
+        self._add_btn.setMaximumSize(QtCore.QSize(60,23))
+        add_menu = QtWidgets.QMenu(self)
+        add_menu.addAction('Workspace', self._print_ham)
+        add_menu.addAction('App or File', self._print_ham)
+        self._add_btn.setMenu(add_menu)
+
+        self._del_btn = QtWidgets.QPushButton()
+        self._del_btn.setText('Delete')
+        self._del_btn.setAcceptDrops(True)
+        self._del_btn.setIcon(self._icons.icon(self._icons.Trashcan))
+        self._del_btn.setIconSize(QtCore.QSize(32,32))
+        self._del_btn.setFlat(True)
+
+        add_del_l.addWidget(self._add_btn)
+        add_del_l.addWidget(self._del_btn)
+        return add_del_l
 
     def _setup_apps(self):
         self._app_lw = QtWidgets.QListWidget()
@@ -122,6 +148,9 @@ class LauncherGUI(QtWidgets.QWidget):
         self._launcher.add_workspace(ws2)
         self._launcher.add_app(ws2, app2, icon2)
         self._populate_workspaces()
+
+    def _print_ham(self):
+        print('ham')
 
 if __name__ == '__main__':
     print(PY_VER)
