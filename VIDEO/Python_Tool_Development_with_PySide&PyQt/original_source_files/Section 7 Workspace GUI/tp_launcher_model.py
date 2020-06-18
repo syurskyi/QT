@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from collections import OrderedDict, defaultdict
 import os
 import platform
@@ -5,25 +7,25 @@ import subprocess
 import webbrowser
 
 
-class LauncherModel():
+class TP_Launcher_Model:
     def __init__(self):
         self._workspaces = OrderedDict()
-        self._open_doc = defaultdict(lambda: 'open')
-        self._open_doc['Window'] = 'start'
+        self._open_doc = defaultdict(lambda: 'open ')
+        self._open_doc['Windows'] = 'start '
         self._platform = platform.system()
 
-    # ================= WORKSPACE ===============================================
+    # ======== WORKSPACES ============
 
-    def add_workspaces(self, ws_name):
+    def add_workspace(self, ws_name):
         self._workspaces[ws_name] = OrderedDict()
 
     def get_workspaces(self):
-        return list(self._workspaces.keys())
+        return list(self._workspaces.keys()) # Python 3.0+ conversion
 
-    def delete_workspaces(self, ws_name):
+    def delete_workspace(self, ws_name):
         del self._workspaces[ws_name]
 
-    # ================= APPS ====================================================
+    # ======== APPS ============
 
     def get_app_names(self, ws_name):
         return self._workspaces[ws_name].keys()
