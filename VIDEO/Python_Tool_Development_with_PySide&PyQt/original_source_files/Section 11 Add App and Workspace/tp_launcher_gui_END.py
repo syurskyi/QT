@@ -1,50 +1,50 @@
 #!/usr/bin/env python
 
-__author__ = 'Serhii Yurskyi'
+__author__ = 'Trevor Payne'
 __version__ = '1.0'
 
+from collections import defaultdict
 import os
 import sys
-from collections import defaultdict
 
-from PyQt5 import QtWidgets, QtCore, QtGui
-from PyQt5.Qt import PYQT_VERSION_STR
+import Qt
+from Qt import QtWidgets, QtCore, QtGui
+import tp_launcher_model
 
-import launcher_model
-
-PyQt5_VER = PYQT_VERSION_STR
+QT_VER = Qt.__binding__
 PY_VER = sys.version[:3]
 
-
-class LauncherGUI(QtWidgets.QWidget):
-    """
-    The goal of this tool is to create a GUI that allows the user to quickly create, select and delete workspaces
-    and add, remove and launch applications within those workspaces.
-    """
+class TP_Launcher_GUI(QtWidgets.QWidget):
+    '''The goal of this tool is to create a GUI that 
+        allows the user to quickly create, select and 
+        delete workspaces and add, remove and launch
+        applications within those workspaces.
+    '''
     def __init__(self, parent=None):
-        super(LauncherGUI, self).__init__(parent)
+        super(TP_Launcher_GUI, self).__init__(parent)
 
         self._icons = QtWidgets.QFileIconProvider()
         self._my_path = os.path.dirname(os.path.realpath(__file__))
         images_path = os.path.join(self._my_path, 'images')
-        full_path = os.path.join(images_path, 'launcher.png')
+        full_path = os.path.join(images_path, 'TPayne_Launcher.png')
         self._tpl_icon = QtGui.QIcon(full_path)
-
-        self._launcher = launcher_model.LauncherModel()
+        
+        self._tp_launcher = tp_launcher_model.TP_Launcher_Model()
 
         self._edit_op = {
-            True: self._edit_on,
+            True: self._edit_on, 
             False: self._edit_off
         }
         self._app_instruction = True
         self._file_dialogs = defaultdict(lambda: self._file_dialog)
-        self._file_dialogs['PyQt5'] = self._file_dialog_pyqt5
+        self._file_dialogs['PyQt4'] = self._file_dialog_pyqt4
+        
 
         self._setup()
         self._testing()
         self._edit_toggle()
 
-    # ================ SETUP UI ========================================================================================
+    #======= SETUP UI =================================
 
     def _setup(self):
         v_layout = QtWidgets.QVBoxLayout(self)
@@ -52,10 +52,8 @@ class LauncherGUI(QtWidgets.QWidget):
         v_layout.addLayout(self._setup_header())
         v_layout.addLayout(self._setup_edit_options())
         v_layout.addWidget(self._setup_apps())
-
         self._setup_connections()
-
-        self.setWindowTitle('SYurskyi\'s Launcher' + __version__)
+        self.setWindowTitle('TPayne\'s Launcher ' + __version__)
         self.setWindowIcon(self._tpl_icon)
         flag = QtCore.Qt.WindowCloseButtonHint
         self.setWindowFlags(QtCore.Qt.Window | flag)
@@ -111,29 +109,29 @@ class LauncherGUI(QtWidgets.QWidget):
         self._workspace_cb.currentIndexChanged.connect(ws)
         self._edit_btn.clicked.connect(self._edit_toggle)
 
-    # ================ DISPLAY ========================================================================================
+    #======= DISPLAY =================================
 
     def _populate_workspaces(self):
         ws = self._workspace_changed
         self._workspace_cb.currentIndexChanged.disconnect(ws)
         self._workspace_cb.clear()
-        self._workspace_cb.addItems(self._launcher.get_workspaces())
+        self._workspace_cb.addItems(self._tp_launcher.get_workspaces())
         self._workspace_cb.currentIndexChanged.connect(ws)
         self._populate_apps()
 
     def _populate_apps(self):
         self._app_lw.clear()
         ws = self.get_workspace()
-        for app_name in self._launcher.get_app_names(ws):
+        for app_name in self._tp_launcher.get_app_names(ws):
             item = QtWidgets.QListWidgetItem(self._app_lw)
-            icon = self._launcher.get_app_icon(ws, app_name)
+            icon = self._tp_launcher.get_app_icon(ws, app_name)
             if icon:
                 item.setIcon(QtGui.QIcon(icon))
             else:
                 item.setIcon(self._icons.icon(self._icons.File))
             item.setText(app_name)
 
-    # ================ WORKSPACE + APP ================================================================================
+    #======= WORKSPACE + APP =================================
 
     def get_workspace(self):
         ''' Returns the currently selection workspace from combobox. '''
@@ -144,9 +142,9 @@ class LauncherGUI(QtWidgets.QWidget):
 
     def _run_app(self, item):
         item.setSelected(False)
-        self._launcher.run_app(self.get_workspace(), str(item.text()))
+        self._tp_launcher.run_app(self.get_workspace(), str(item.text()))
 
-    # ================ EDIT MODE ======================================================================================
+    #======= EDIT MODE =================================
 
     def _edit_toggle(self):
         self._edit_op[self._edit_btn.isChecked()]()
@@ -162,14 +160,14 @@ class LauncherGUI(QtWidgets.QWidget):
         self._app_lw.itemClicked.connect(self._run_app)
         self._edit_btn.setText('Edit')
 
-    # ================ ADD ============================================================================================
+    #======= ADD =================================
 
     def _add_workspace(self):
         ws = 'New WORKSPACE'
         msg = 'What would you like to title the new WORKSPACE?'
         text = QtWidgets.QInputDialog.getText(self, ws, msg)[0]
         if text:
-            self._launcher.add_workspace(str(text))
+            self._tp_launcher.add_workspace(str(text))
             self._populate_workspaces()
             index = self._workspace_cb.findText(text)
             self._workspace_cb.setCurrentIndex(index)
@@ -181,51 +179,62 @@ class LauncherGUI(QtWidgets.QWidget):
             QtWidgets.QMessageBox.information(self, 'Add App', msg)
             self._app_instruction = False
         sel = 'Select APP file'
-        app = self._file_dialogs[PyQt5_VER](sel, self._my_path)
+        app = self._file_dialogs[QT_VER](sel, self._my_path)
         if app:
             path = os.path.split(app)[0]
             msg = 'Select ICON file (optional)'
-            icon = self._file_dialogs[PyQt5_VER](msg, path)
-            self._launcher.add_app(self.get_workspace(), app, icon)
+            icon = self._file_dialogs[QT_VER](msg, path)
+            self._tp_launcher.add_app(self.get_workspace(), app, icon)
             self._populate_apps()
 
     def _file_dialog(self, msg, path):
         return QtWidgets.QFileDialog.getOpenFileName(self, msg, path)[0]
 
-    def _file_dialog_pyqt5(self, msg, path):
+    def _file_dialog_pyqt4(self, msg, path):
         fd = QtWidgets.QFileDialog.getOpenFileName(self, msg, path)
         return str(fd)
 
-    # ================ TEST CODE ======================================================================================
+    #======= TEST CODE =================================
 
     def _testing(self):
         ws1 = 'My_first_workspace'
         ws2 = 'My_second_workspace'
         ## CHANGE TO YOUR COMPUTER PATHS
         app1 = r'C:\Program Files (x86)\Google\Chrome\Application\Chrome.exe'
-        icon1 = r'C:\Users\syurskyi\PycharmProjects\QT\VIDEO\Python_Tool_Development_with_PySide&PyQt\my\icons\chrome.png'
-        app2 = r'C:\Program Files (x86)\Notepad++\notepad++.exe'
-        icon2 = r'C:\Users\syurskyi\PycharmProjects\QT\VIDEO\Python_Tool_Development_with_PySide&PyQt\my\icons\notepad++.ico'
-        self._launcher.add_workspace(ws1)
-        self._launcher.add_app(ws1, app1, icon1)
-        self._launcher.add_app(ws1, app2, icon2)
-        self._launcher.add_workspace(ws2)
-        self._launcher.add_app(ws2, app2, icon2)
+        icon1 = r'C:\Program Files (x86)\Google\Chrome\Application\61.0.3163.100\VisualElements\smalllogo.png'
+        app2 = r'D:\Program Files (x86)\Mozilla Firefox\firefox.exe'
+        self._tp_launcher.add_workspace(ws1)
+        self._tp_launcher.add_app(ws1, app1, icon1)
+        self._tp_launcher.add_app(ws1, app2, None)
+        self._tp_launcher.add_workspace(ws2)
+        self._tp_launcher.add_app(ws2, app2, None)
         self._populate_workspaces()
 
-    def _print_ham(self):
-        print('ham')
 
 if __name__ == '__main__':
-    print(PY_VER)
-    print(PyQt5_VER)
+    print (PY_VER)
+    print (QT_VER)
     app = QtWidgets.QApplication(sys.argv)
-    ex = LauncherGUI()
+    ex = TP_Launcher_GUI()
     ex.show()
     sys.exit(app.exec_())
 
-
-
-
-
-
+# Copyright (c) 2017 Trevor Payne
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
