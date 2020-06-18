@@ -20,6 +20,21 @@ class Delete_Btn(QtWidgets.QPushButton):
     ''' Custom button that Triggers parent's 'delete_item' function. '''
     def __init__(self, parent=None):
         super(Delete_Btn, self).__init__(parent)
+        self._my_parent = parent
+        self._type = 'application/x-qabstractitemmodeldatalist'
+
+    def dragEnterEvent(self, e):
+        if e.mimeData().hasFormat(self._type):
+            e.accept()
+        else:
+            e.ignore()
+
+    def dropEvent(self, e):
+        if e.mimeData().hasFormat(self._type):
+            self._my_parent.delete_item()
+            e.accept()
+        else:
+            e.ignore()
 
 
 class LauncherGUI(QtWidgets.QWidget):
@@ -78,6 +93,8 @@ class LauncherGUI(QtWidgets.QWidget):
         v_layout = QtWidgets.QVBoxLayout(workspace_gb)
 
         self._workspace_cb = QtWidgets.QComboBox()
+        flag = QtWidgets.QAbstractItemView.DragOnly
+        self._workspace_cb.view().setDragDropMode(flag)
 
         self._edit_btn = QtWidgets.QPushButton('Edit')
         self._edit_btn.setMaximumSize(QtCore.QSize(40, 23))
@@ -121,6 +138,9 @@ class LauncherGUI(QtWidgets.QWidget):
         ws = self._workspace_changed
         self._workspace_cb.currentIndexChanged.connect(ws)
         self._edit_btn.clicked.connect(self._edit_toggle)
+        dw = self._dragging_workspace
+        self._workspace_cb.view().pressed.connect(dw)
+        self._app_lw.itemPressed.connect(self._dragging_app)
 
     # ================ DISPLAY ========================================================================================
 
@@ -209,12 +229,19 @@ class LauncherGUI(QtWidgets.QWidget):
 
     # ================ DELETE =========================================================================================
 
+    def _dragging_workspace(self, index):
+        ws = str(self._workspace_cb.itemText(index.row()))
+        self._dragging = ('workspace', ws)
+
+    def _dragging_app(self, item):
+        self._dragging = ('application', str(item.text()))
+
     def _delete_app(self, app_name):
-        self._tp_launcher.delete_app(self.get_workspace(), app_name)
+        self._launcher.delete_app(self.get_workspace(), app_name)
         self._populate_apps()
 
     def _delete_workspace(self, ws_name):
-        self._tp_launcher.delete_workspace(ws_name)
+        self._launcher.delete_workspace(ws_name)
         self._populate_workspaces()
 
     def delete_item(self):
