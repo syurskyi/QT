@@ -31,8 +31,10 @@ class LauncherGUI(QtWidgets.QWidget):
         full_path = os.path.join(image_path, 'launcher.png')
         self._tpl_icon = QtGui.QIcon(full_path)
 
+        self._launcher = launcher_model.LauncherModel()
 
         self._setup()
+        self._testing()
 
     # ================ SETUP UI ========================================================================================
 
@@ -41,6 +43,8 @@ class LauncherGUI(QtWidgets.QWidget):
 
         v_layout.addLayout(self._setup_header())
         v_layout.addWidget(self._setup_apps())
+
+        self._setup_connections()
 
         self.setWindowTitle('SYurskyi\'s Launcher' + __version__)
         self. setWindowIcon(self._tpl_icon)
@@ -67,6 +71,29 @@ class LauncherGUI(QtWidgets.QWidget):
         self._app_lw.setDragDropMode(flag)
         return self._app_lw
 
+    def _setup_connections(self):
+        ws = self._workspace_changed
+        self._workspace_cb.currentIndexChanged.connect(ws)
+
+    # ================ DISPLAY ========================================================================================
+
+    def _populate_workspaces(self):
+        self._workspace_cb.clear()
+        self._workspace_cb.addItem(self._launcher.get_workspaces())
+
+    # ================ WORKSPACE + APP ================================================================================
+
+    def get_workspace(self):
+        ''' Returns the currently selection workspace from combobox. '''
+        return str(self._workspace_cb.currentText())
+
+    def _workspace_changed(self):
+        print('ham')
+
+    def _testing(self):
+        self._launcher.add_workspaces('My_first_workspace')
+        self._launcher.add_workspaces('My_second_workspace')
+        self._populate_workspaces()
 
 if __name__ == '__main__':
     print(PY_VER)
