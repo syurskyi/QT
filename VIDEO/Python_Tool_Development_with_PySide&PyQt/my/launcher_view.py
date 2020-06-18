@@ -112,10 +112,10 @@ class LauncherGUI(QtWidgets.QWidget):
         ws1 = 'My_first_workspace'
         ws2 = 'My_second_workspace'
         ## CHANGE TO YOUR COMPUTER PATHS
-        app1 = r'C:\Program Files\JetBrains\PyCharm 2018.3.2\bin\pycharm.exe'
-        icon1 = r'C:\Program Files\JetBrains\PyCharm 2018.3.2\bin\pycharm.ico'
-        app2 = r'C:\Program File\Mozilla Firefox\firefox.exe'
-        icon2 = r'C:\Users\syurskyi\PycharmProjects\QT\VIDEO\Python_Tool_Development_with_PySide&PyQt\my\icons\Hopstarter-Orb-Mozilla-Firefox.ico'
+        app1 = r'C:\Program Files (x86)\Google\Chrome\Application\Chrome.exe'
+        icon1 = r'C:\Users\syurskyi\PycharmProjects\QT\VIDEO\Python_Tool_Development_with_PySide&PyQt\my\icons\chrome.png'
+        app2 = r'C:\Program Files (x86)\Notepad++\notepad++.exe'
+        icon2 = r'C:\Users\syurskyi\PycharmProjects\QT\VIDEO\Python_Tool_Development_with_PySide&PyQt\my\icons\notepad++.ico'
         self._launcher.add_workspace(ws1)
         self._launcher.add_app(ws1, app1, icon1)
         self._launcher.add_app(ws1, app2, icon2)
