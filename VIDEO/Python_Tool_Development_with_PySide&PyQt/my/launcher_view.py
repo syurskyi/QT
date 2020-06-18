@@ -16,6 +16,12 @@ PyQt5_VER = PYQT_VERSION_STR
 PY_VER = sys.version[:3]
 
 
+class Delete_Btn(QtWidgets.QPushButton):
+    ''' Custom button that Triggers parent's 'delete_item' function. '''
+    def __init__(self, parent=None):
+        super(Delete_Btn, self).__init__(parent)
+
+
 class LauncherGUI(QtWidgets.QWidget):
     """
     The goal of this tool is to create a GUI that allows the user to quickly create, select and delete workspaces
@@ -39,6 +45,11 @@ class LauncherGUI(QtWidgets.QWidget):
         self._app_instruction = True
         self._file_dialogs = defaultdict(lambda: self._file_dialog)
         self._file_dialogs['PyQt5'] = self._file_dialog_pyqt5
+        self._dragging = None
+        self._delete_op = {
+            'workspace': self._delete_workspace,
+            'application': self._delete_app
+        }
 
         self._setup()
         self._testing()
@@ -88,7 +99,7 @@ class LauncherGUI(QtWidgets.QWidget):
         add_menu.addAction('App or File', self._add_app)
         self._add_btn.setMenu(add_menu)
 
-        self._del_btn = QtWidgets.QPushButton()
+        self._del_btn = Delete_Btn(self)
         self._del_btn.setText('Delete')
         self._del_btn.setAcceptDrops(True)
         self._del_btn.setIcon(self._icons.icon(self._icons.Trashcan))
@@ -195,6 +206,28 @@ class LauncherGUI(QtWidgets.QWidget):
     def _file_dialog_pyqt5(self, msg, path):
         fd = QtWidgets.QFileDialog.getOpenFileName(self, msg, path)
         return str(fd)
+
+    # ================ DELETE =========================================================================================
+
+    def _delete_app(self, app_name):
+        self._tp_launcher.delete_app(self.get_workspace(), app_name)
+        self._populate_apps()
+
+    def _delete_workspace(self, ws_name):
+        self._tp_launcher.delete_workspace(ws_name)
+        self._populate_workspaces()
+
+    def delete_item(self):
+        ''' Delete the item dragged onto Delete button '''
+        typ = self._dragging[0]
+        name = self._dragging[1]
+        title = 'Delete {}?'.format(typ)
+        msg = 'Are you sure you want to delete {} "{}"'.format(typ, name)
+        no = QtWidgets.QMessageBox.No
+        yes = QtWidgets.QMessageBox.Yes
+        btn = QtWidgets.QMessageBox.warning(self, title, msg, yes, no)
+        if btn == yes:
+            self._delete_op[typ](name)
 
     # ================ TEST CODE ======================================================================================
 
