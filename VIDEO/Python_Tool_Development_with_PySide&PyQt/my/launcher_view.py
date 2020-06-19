@@ -66,6 +66,12 @@ class LauncherGUI(QtWidgets.QWidget):
             'application': self._delete_app
         }
 
+        txt = 'SYurskyi_Experience' + PyQt5_VER
+        self._settings = QtCore.QSettings(txt, 'SYurskyi\'s_Launcher')
+        name = 'Python-{}_PyQt5-{}_data.json'.format(PY_VER, PyQt5_VER)
+        path = os.path.join(self._my_path, 'data')
+        self._json_file = os.path.join(path, name)
+
         self._setup()
         self._testing()
         self._edit_toggle()
@@ -172,6 +178,7 @@ class LauncherGUI(QtWidgets.QWidget):
 
     def _workspace_changed(self):
         self._populate_apps()
+        self._save_settings()
 
     def _run_app(self, item):
         item.setSelected(False)
@@ -184,6 +191,7 @@ class LauncherGUI(QtWidgets.QWidget):
         self._app_lw.setDragEnabled(self._edit_btn.isChecked())
         self._add_btn.setVisible(self._edit_btn.isChecked())
         self._del_btn.setVisible(self._edit_btn.isChecked())
+        self._save_settings()
 
     def _edit_on(self):
         self._app_lw.itemClicked.disconnect(self._run_app)
@@ -204,6 +212,7 @@ class LauncherGUI(QtWidgets.QWidget):
             self._populate_workspaces()
             index = self._workspace_cb.findText(text)
             self._workspace_cb.setCurrentIndex(index)
+            self._save_settings()
 
     def _add_app(self):
         if self._app_instruction:
@@ -219,6 +228,7 @@ class LauncherGUI(QtWidgets.QWidget):
             icon = self._file_dialogs[PyQt5_VER](msg, path)
             self._launcher.add_app(self.get_workspace(), app, icon)
             self._populate_apps()
+            self._save_settings()
 
     def _file_dialog(self, msg, path):
         return QtWidgets.QFileDialog.getOpenFileName(self, msg, path)[0]
@@ -255,6 +265,18 @@ class LauncherGUI(QtWidgets.QWidget):
         btn = QtWidgets.QMessageBox.warning(self, title, msg, yes, no)
         if btn == yes:
             self._delete_op[typ](name)
+
+    # ================ SETTING =========================================================================================
+
+    def _save_settings(self):
+        c = self._app_lw.count()
+        names = [self._app_lw.item(i).text() for i in range(c)]
+        ws = self.get_workspace()
+        self._launcher.reorder_apps(ws, names)
+        self._settings.setValue('CurrentWorkspace', ws)
+        self._launcher.write_json_file(self._json_file)
+        self._settings.setValue('PosX', int(self.x()))
+        self._settings.setValue('PosY', int(self.y()))
 
     # ================ TEST CODE ======================================================================================
 

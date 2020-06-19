@@ -5,6 +5,7 @@ import os
 import platform
 import subprocess
 import webbrowser
+import json
 
 
 class LauncherModel():
@@ -59,3 +60,15 @@ class LauncherModel():
 
     def run_youtube(self):
         webbrowser.open('http://www.youtube.com/TPayneExperience')
+
+    # ================= JSON ===========================================================================================
+
+    def write_json_file(self, path):
+        with open(path, 'w') as js_file:
+            json.dump(self._workspaces, js_file)
+
+    def read_json_file(self, path):
+        with open(path, 'r') as js_file:
+            self._workspaces = OrderedDict(json.load(js_file))
+
+
