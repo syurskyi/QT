@@ -89,6 +89,7 @@ class LauncherGUI(QtWidgets.QWidget):
         v_layout.addLayout(self._setup_edit_options())
         v_layout.addWidget(self._setup_apps())
 
+        self._setup_tray_icon()
         self._setup_connections()
 
         self.setWindowTitle('SYurskyi\'s Launcher' + __version__)
@@ -144,6 +145,20 @@ class LauncherGUI(QtWidgets.QWidget):
         self._app_lw.setDragDropMode(flag)
         return self._app_lw
 
+    def _setup_tray_icon(self):
+        tray_icon = QtWidgets.QSystemTrayIcon(self)
+        tray_icon.setIcon(self._tpl_icon)
+        tray_icon.setToolTip('Launches other apps!')
+
+        tray_menu = QtWidgets.QMenu(self)
+        tray_menu.addAction('Open', self.show)
+        tray_menu.addAction('YouTube', self._launcher.run_youtube)
+        tray_menu.addSeparator()
+        q = QtWidgets.QAction('Quit', self, triggered=self._close)
+        tray_menu.addAction(q)
+        tray_icon.setContextMenu(tray_menu)
+        tray_icon.show()
+
     def _setup_connections(self):
         ws = self._workspace_changed
         self._workspace_cb.currentIndexChanged.connect(ws)
@@ -173,6 +188,14 @@ class LauncherGUI(QtWidgets.QWidget):
             else:
                 item.setIcon(self._icons.icon(self._icons.File))
             item.setText(app_name)
+
+    def closeEvent(self, e):
+        self.hide()
+        e.ignore()
+
+    def _close(self):
+        self._save_settings()
+        QtWidgets.QApplication.instance().quit()
 
     # ================ WORKSPACE + APP ================================================================================
 
@@ -312,6 +335,13 @@ if __name__ == '__main__':
     print(PY_VER)
     print(PyQt5_VER)
     app = QtWidgets.QApplication(sys.argv)
+    if not QtWidgets.QSystemTrayIcon.isSystemTrayAvailable():
+        QtWidgets.QMessageBox.critical(
+            None, 'Error!',
+            'No system tray available for this system! Exiting...'
+        )
+        sys.exit(1)
+    QtWidgets.QApplication.setQuitOnLastWindowClosed(False)
     ex = LauncherGUI()
     ex.show()
     sys.exit(app.exec_())
