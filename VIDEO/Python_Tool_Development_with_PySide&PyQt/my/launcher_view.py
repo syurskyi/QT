@@ -72,8 +72,12 @@ class LauncherGUI(QtWidgets.QWidget):
         path = os.path.join(self._my_path, 'data')
         self._json_file = os.path.join(path, name)
 
+        d = defaultdict(lambda: self._get_settings)
+        self._settings_op = defaultdict(lambda: d)
+        self._settings_op['2.7']['PyQt4'] = self._get_settings_27_pyqt4
+
         self._setup()
-        self._testing()
+        self._load_settings()
         self._edit_toggle()
 
     # ================ SETUP UI ========================================================================================
@@ -278,25 +282,31 @@ class LauncherGUI(QtWidgets.QWidget):
         self._settings.setValue('PosX', int(self.x()))
         self._settings.setValue('PosY', int(self.y()))
 
-    # ================ TEST CODE ======================================================================================
+    def _load_settings(self):
+        if 'CurrentWorkspace' in self._settings.allKeys() and \
+              os.path.exists(self._json_file):
+            x, y, cws = self._settings_op[PY_VER][PyQt5_VER]()
+            self._launcher.read_json_file(self._json_file)
+            self._populate_workspaces()
+            index = self._workspace_cb.findText(cws)
+            self._workspace_cb.setCurrentIndex(index)
+            self.move(x,y)
+        else:
+            self._tp_launcher.add_workspace('Default_WS')
+            self._populate_workspaces()
 
-    def _testing(self):
-        ws1 = 'My_first_workspace'
-        ws2 = 'My_second_workspace'
-        ## CHANGE TO YOUR COMPUTER PATHS
-        app1 = r'C:\Program Files (x86)\Google\Chrome\Application\Chrome.exe'
-        icon1 = r'C:\Users\syurskyi\PycharmProjects\QT\VIDEO\Python_Tool_Development_with_PySide&PyQt\my\icons\chrome.png'
-        app2 = r'C:\Program Files (x86)\Notepad++\notepad++.exe'
-        icon2 = r'C:\Users\syurskyi\PycharmProjects\QT\VIDEO\Python_Tool_Development_with_PySide&PyQt\my\icons\notepad++.ico'
-        self._launcher.add_workspace(ws1)
-        self._launcher.add_app(ws1, app1, icon1)
-        self._launcher.add_app(ws1, app2, icon2)
-        self._launcher.add_workspace(ws2)
-        self._launcher.add_app(ws2, app2, icon2)
-        self._populate_workspaces()
+    def _get_settings(self):
+        x = int(self._settings.value('PosX')) #PyQt5 conversion
+        y = int(self._settings.value('PosY'))
+        cws = str(self._settings.value('CurrentWorkspace'))
+        return x, y, cws
 
-    def _print_ham(self):
-        print('ham')
+    def _get_settings_27_pyqt4(self):
+        x = self._settings.value('PosX').toInt()[0]
+        y = self._settings.value('PosY').toInt()[0]
+        cws = str(self._settings.value('CurrentWorkspace'))
+        return x, y, cws
+
 
 if __name__ == '__main__':
     print(PY_VER)
